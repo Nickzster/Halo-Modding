@@ -64,18 +64,11 @@ const validatePost = async (data): Promise<Post> => {
   let Errors: Array<Error> = checkMandatoryFields(data);
   if (Errors.length > 0) throw Errors;
   let isToxic = await checkForToxicity([
-    data.UserName,
+    data.UserInfo.UserName,
     data.Description,
     data.ProjectTitle
   ]);
-  if (isToxic)
-    throw [
-      {
-        code: 'TOXIC_CONTENT',
-        message:
-          'Please check your username, project title, and project description for any NSFW content.'
-      }
-    ];
+  if (isToxic) throw generateError('TOXICITY_DETECTED');
   let newPost: Post = new Posts({
     UserInfo: data.UserInfo,
     Game: checkGameString(data.Game),

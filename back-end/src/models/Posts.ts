@@ -22,12 +22,18 @@ const PostSchema: Schema = new Schema({
     type: String,
     required: true
   },
-  DownloadMirrors: {
-    type: Array
-  },
-  ProjectMirrors: {
-    type: Array
-  },
+  DownloadMirrors: [
+    {
+      Source: String,
+      URL: String
+    }
+  ],
+  ProjectMirrors: [
+    {
+      Source: String,
+      URL: String
+    }
+  ],
   UserInfo: {
     UserName: {
       type: String,

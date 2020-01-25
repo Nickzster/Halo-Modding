@@ -14,14 +14,19 @@ import { Document } from 'mongoose';
 //   Utility
 // }
 
+interface Link {
+  Source: string;
+  URL: string;
+}
+
 export interface Post extends Document {
   Game: String;
   ProjectType: String;
   ProjectTitle: string;
   Images: Array<string>;
   Description: string;
-  DownloadMirrors: Array<string>;
-  ProjectMirrors: Array<string>;
+  DownloadMirrors: Array<Link>;
+  ProjectMirrors: Array<Link>;
   UserInfo: {
     UserEmail: string;
     UserName: string;
