@@ -11,10 +11,11 @@ export const getPostsByParamType = async (
   page: number
 ): Promise<Array<Post> | Error> => {
   let searchParam;
-  if (formatGame(param)) searchParam = { Game: formatGame(param) };
-  else if (formatProjectType(param))
-    searchParam = { ProjectType: formatGame(param) };
-  else throw 'INVALID_PARAM';
+  if (formatGame(param) !== 'INVALID_GAME')
+    searchParam = { Game: formatGame(param) };
+  else if (formatProjectType(param) !== 'INVALID_PROJECT_TYPE')
+    searchParam = { ProjectType: formatProjectType(param) };
+  else throw generateError('INVALID_PARAM');
   console.log(searchParam);
   try {
     let post = await Posts.find(searchParam)

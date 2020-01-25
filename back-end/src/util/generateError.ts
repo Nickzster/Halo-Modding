@@ -37,6 +37,9 @@ export const generateError = (code: string) => {
     case 'REACHED_BOTTOM':
       err.message = 'It looks like you have reached the bottom!';
       break;
+    case 'INVALID_PARAM':
+      err.message = 'Invalid parameter specified!';
+      break;
     default:
       err.message = `ERROR CODE ${code} DOES NOT HAVE A MESSAGE!`;
   }

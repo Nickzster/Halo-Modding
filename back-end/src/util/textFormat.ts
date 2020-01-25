@@ -10,7 +10,7 @@ export const formatGame = (game: string) => {
     case 'master-chief-collection':
       return 'MasterChiefCollection';
     default:
-      throw 'INVALID_GAME';
+      return 'INVALID_GAME';
   }
 };
 
@@ -27,6 +27,6 @@ export const formatProjectType = (projectType: string) => {
     case 'mod':
       return 'Mod';
     default:
-      throw 'INVALID_PROJECT_TYPE';
+      return 'INVALID_PROJECT_TYPE';
   }
 };
