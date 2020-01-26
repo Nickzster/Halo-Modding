@@ -1,23 +1,13 @@
-interface Link {
-  Source: string;
-  URL: string;
-}
-
 export interface Post {
-  Game: String;
-  ProjectType: String;
-  ProjectTitle: string;
-  Images: Array<string>;
-  Description: string;
-  DownloadMirrors: Array<Link>;
-  ProjectMirrors: Array<Link>;
-  UserInfo: {
-    UserEmail: string;
-    UserName: string;
-  };
-}
-
-export interface PostQuery {
-  Name: string;
-  Param: string;
+  avatarurl?: string;
+  username: string;
+  projecttitle: string;
+  game: string;
+  projecttype: string;
+  images: Array<string>;
+  description: string;
+  downloadmirrors: Array<{ Source: string; URL: string }>;
+  projectmirrors: Array<{ Source: string; URL: string }>;
+  projectstate?: string;
+  isverified?: boolean;
 }

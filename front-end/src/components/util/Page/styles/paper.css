@@ -1,0 +1,38 @@
+.paper {
+  margin: 2em 10em;
+  background-color: var(--primary-color);
+  color: var(--font-color);
+  box-shadow: var(--box-shadow);
+  padding: 3em;
+  border-radius: 5px;
+}
+
+.paper > h1 {
+  text-align: center;
+  font-size: 4em;
+  margin-bottom: 1em;
+}
+
+.image-collection {
+  display: grid;
+  grid-auto-columns: 1fr 1fr;
+  align-content: center;
+  justify-content: center;
+}
+
+.image-collection > img {
+  width: 400px;
+  height: auto;
+  margin: 0em 1em;
+}
+
+.paper > a {
+  color: red;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+.description {
+  padding: 2em 2em;
+  border: 1px solid var(--font-color);
+}

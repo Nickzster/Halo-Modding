@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Routes from './Routes/Routes';
-import LandingPage from './screens/LandingPage';
-
 import './styles/global.css';
-import NavBar from './components/NavBar';
+
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
+
+import Routes from './Routes';
+import LandingPage from './components/LandingPage';
 
 const App: React.FC = () => {
   return (
     <div className='App'>
       <Router>
-        <NavBar />
+        <Navbar />
         <Switch>
           <Route exact path='/' component={LandingPage} />
           <Route component={Routes} />

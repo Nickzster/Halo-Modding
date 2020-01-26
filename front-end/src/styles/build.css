@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  --font-color: #e2e8f7;
+  --primary-color: #2c394b;
+  --trim-color: #202c3a;
+  --box-shadow: 0px 5px 10px 1px #000;
+  --box-shadow-light: 0px 5px 10px 1px #000;
+  --sm: 640px;
+  --medium: 768px;
+  --large: 1024px;
+  --xlarge: 1280px;
+}
+
+body {
+  background-color: #202c3a;
+}
