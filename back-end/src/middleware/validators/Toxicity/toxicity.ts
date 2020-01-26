@@ -21,15 +21,24 @@ const checkForToxicity = async (strings: Array<string>): Promise<Boolean> => {
             },
             languages: ['en'],
             requestedAttributes: {
-              TOXICITY: {}
+              TOXICITY: {},
+              SEVERE_TOXICITY: {},
+              IDENTITY_ATTACK: {},
+              INSULT: {},
+              THREAT: {},
+              SEXUALLY_EXPLICIT: {},
+              FLIRTATION: {}
             }
           })
         }
       )
         .then(res => res.json())
         .then(result => {
-          if (result.attributeScores.TOXICITY.summaryScore.value > 0.75)
-            throw 'Uh oh, Toxicity Detected!';
+          let scores = result.attributeScores;
+          for (let key in scores) {
+            if (scores[key].summaryScore.value > 0.75)
+              throw 'Toxicity Detected!';
+          }
         });
     }
     debug('No Toxicity Detected!');

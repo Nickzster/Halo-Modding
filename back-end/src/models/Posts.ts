@@ -2,44 +2,44 @@ import mongoose, { Schema } from 'mongoose';
 import { Post } from '../types/Post';
 
 const PostSchema: Schema = new Schema({
-  Game: {
+  game: {
     type: String,
     required: true
   },
-  ProjectType: {
+  projecttype: {
     type: String,
     required: true
   },
-  ProjectTitle: {
+  projecttitle: {
     type: String,
     required: true
   },
-  Images: {
+  images: {
     type: Array,
     required: true
   },
-  Description: {
+  description: {
     type: String,
     required: true
   },
-  DownloadMirrors: [
+  downloadmirrors: [
     {
       Source: String,
       URL: String
     }
   ],
-  ProjectMirrors: [
+  projectmirrors: [
     {
       Source: String,
       URL: String
     }
   ],
-  UserInfo: {
-    UserName: {
+  userinfo: {
+    username: {
       type: String,
       required: true
     },
-    UserEmail: {
+    email: {
       type: String,
       required: true
     }

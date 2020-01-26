@@ -2,8 +2,6 @@ import express from 'express';
 import debug from '../../util/debug';
 import { getPostsByQuery, getPostByID } from '../../controllers/Post';
 
-//TODO: Handle Errors
-
 const router: express.Router = express.Router();
 
 /* Adds projects to the respective sections */
@@ -22,7 +20,7 @@ router.get('/id/:id', async (req: express.Request, res: express.Response) => {
 //Gets some posts from the specified param
 router.get('/', async (req: express.Request, res: express.Response) => {
   try {
-    debug(`Retrieving some posts by parameters: ${req.query}`);
+    debug(`Retrieving some posts by parameters:`, req.query);
     let posts = await getPostsByQuery(req.query);
     res.send(posts);
   } catch (err) {

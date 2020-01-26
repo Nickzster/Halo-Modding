@@ -10,6 +10,7 @@ const errors = {
   DESCRIPTION_IS_NULL: 'Invalid Description was specified!',
   CANNOT_FIND_POST_BY_ID: 'Cannot find the post specified!',
   CANNOT_FIND_POSTS: 'Something has gone wrong!',
+  CANNOT_SAVE_POST: 'Something went wrong with your new post!',
   REACHED_BOTTOM: 'It looks like you have reached the bottom!',
   INVALID_PARAM: 'Invalid Parameter Specified!',
   TOXICITY_DETECTED:
