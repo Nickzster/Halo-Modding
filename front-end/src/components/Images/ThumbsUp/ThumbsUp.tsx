@@ -1,5 +1,5 @@
 import React from 'react';
-import Thumbsup from '../../../../images/thumbsup.svg';
+import Thumbsup from '../../../images/thumbsup.svg';
 
 interface Props {
   fill: string;

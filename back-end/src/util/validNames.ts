@@ -6,7 +6,8 @@ let validProjectTypes = {
   'custom-map': 'custom-map',
   'custom-maps': 'custom-map',
   'modded-map': 'modded-map',
-  mod: 'mod'
+  mod: 'mod',
+  video: 'video'
 };
 
 let validGames = {

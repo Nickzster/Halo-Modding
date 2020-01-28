@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../../styles/global.css';
-import ThumbsUp from '../Images/ThumbsUp';
+import ThumbsUp from '../../Images/ThumbsUp';
 
 interface Props {
   updateLike: Function;

@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/global.css';
 import { PostCard } from '../../components/ViewProfile/ViewProfileCard/PostCard';
 import SampleProfile from '../../SampleData/SampleProfile.json';
-import DisplayPartialProfile from '../../components/util/DisplayPartialProfile';
+import DisplayPartialProfile from '../../components/Profile/DisplayPartialProfile';
 
 const ViewProfile: React.FC = () => {
   const { Profile, Posts } = SampleProfile;

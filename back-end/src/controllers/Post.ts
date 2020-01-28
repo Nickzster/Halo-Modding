@@ -32,12 +32,13 @@ export const getPostsByQuery = async (
     }
     console.log('QUERIES', queries);
     let page: number = parseInt(queries.pop().value, 10);
-    if (!page) return generateError('PAGE_REQUIRED');
-    if (queries.length === 0) return generateError('NO_SPECIFIED_PARAMETERS');
     let searchParam = {};
-    queries.map(query => (searchParam[query.key] = query.value));
+    if (!page) return generateError('PAGE_REQUIRED');
+    if (queries.length > 0)
+      queries.map(query => (searchParam[query.key] = query.value));
     debug(searchParam);
     let post: Array<Post> = await Posts.find(searchParam)
+      .sort({ date: -1 })
       .skip((page - 1) * ITEMS_PER_FETCH)
       .limit(ITEMS_PER_FETCH);
     if (post.length === 0) return generateError('REACHED_BOTTOM');
