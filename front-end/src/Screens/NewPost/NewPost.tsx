@@ -19,6 +19,7 @@ const NewPost = () => {
   });
   const [success, updateSuccess] = useState(false);
   const [pending, updatePending] = useState(false);
+  const [err, updateErrors] = useState({ errors: [] as Array<string> });
   const submitForm = (e: any) => {
     e.preventDefault();
     let newPM = new Array<Mirror>();
@@ -49,6 +50,18 @@ const NewPost = () => {
     updatePending(true);
     sendData(submission)
       .then(response => {
+        if (
+          response &&
+          response.code &&
+          response.code === 'TOXICITY_DETECTED'
+        ) {
+          console.log('TOXICITY DETECTED!');
+          let newErrors = new Array<string>();
+          newErrors.push(response.message);
+          updateErrors({ errors: newErrors });
+          updatePending(false);
+          return;
+        }
         updateSuccess(true);
       })
       .catch(err => {
@@ -72,6 +85,9 @@ const NewPost = () => {
   return (
     <div className='container mx-auto text-center'>
       <h1 className='text-3xl text-font-color'>Share Your Project</h1>
+      {err.errors.map((error: string) => (
+        <p className='text-red-500 bg-primary-blue p-5 m-3'>{error}</p>
+      ))}
       <form
         onSubmit={e => {
           console.log('Form is being submitted!');
@@ -79,88 +95,105 @@ const NewPost = () => {
         }}
         className='text-black'
       >
-        <input
-          required
-          className='background-black p-1 rounded'
-          type='text'
-          name='username'
-          value={form.username}
-          placeholder='Username'
-          onChange={e => changeField(e)}
-        ></input>
+        <div className='container mx-auto text-center bg-primary-blue p-5 md:flex md:items-center md:justify-center flex-col'>
+          <div className='md:flex flex-col md:items-center'>
+            <label className='pr-5 text-font-color mr-auto'>Username</label>
+            <input
+              required
+              className='background-black p-1 rounded'
+              type='text'
+              name='username'
+              value={form.username}
+              placeholder='Username'
+              onChange={e => changeField(e)}
+            ></input>
+          </div>
+          <br />
+          <div className='md:flex flex-col md:items-center'>
+            <label className='pr-5 text-font-color mr-auto'>Email</label>
+            <input
+              required
+              className='background-black p-1 rounded'
+              type='text'
+              placeholder='Email'
+              name='email'
+              value={form.email}
+              onChange={e => changeField(e)}
+            ></input>
+          </div>
+        </div>
         <br />
         <br />
-        <input
-          required
-          className='background-black p-1 rounded'
-          type='text'
-          placeholder='Email'
-          name='email'
-          value={form.email}
-          onChange={e => changeField(e)}
-        ></input>
+        <div className='bg-primary-blue p-3'>
+          <p className='text-xl text-font-color'>
+            What game does your project belong to?
+          </p>
+          <select
+            required
+            name='game'
+            onChange={e => {
+              changeField(e);
+            }}
+          >
+            <option value=''>--SELECT ONE--</option>
+            <option value='halo-custom-edition'>halo-custom-edition</option>
+            <option value='halo-2-vista'>halo-2-vista</option>
+            <option value='halo-ce'>halo-combat-evolved</option>
+            <option value='master-chief-collection'>
+              master-chief-collection
+            </option>
+          </select>
+        </div>
         <br />
         <br />
-        <p className='text-xl text-font-color'>
-          What game does your project belong to?
-        </p>
-        <br />
-        <select
-          required
-          name='game'
-          onChange={e => {
-            changeField(e);
-          }}
-        >
-          <option value=''>--SELECT ONE--</option>
-          <option value='halo-custom-edition'>halo-custom-edition</option>
-          <option value='halo-2-vista'>halo-2-vista</option>
-          <option value='halo-ce'>halo-combat-evolved</option>
-          <option value='master-chief-collection'>
-            master-chief-collection
-          </option>
-        </select>
-        <br />
-        <br />
-        <p className='text-xl text-font-color'>
-          What category does your project belong to?
-        </p>
-        <br />
-        <select
-          required
-          name='projecttype'
-          onChange={e => {
-            changeField(e);
-          }}
-        >
-          <option value=''>--SELECT ONE--</option>
-          <option value='custom-map'>custom-map</option>
-          <option value='mod'>mod</option>
-          <option value='utility'>utility</option>
-          <option value='video'>video</option>
-        </select>
+        <div className='bg-primary-blue p-3'>
+          <p className='text-xl text-font-color'>
+            What category does your project belong to?
+          </p>
+          <select
+            required
+            name='projecttype'
+            onChange={e => {
+              changeField(e);
+            }}
+          >
+            <option value=''>--SELECT ONE--</option>
+            <option value='custom-map'>custom-map</option>
+            <option value='mod'>mod</option>
+            <option value='utility'>utility</option>
+            <option value='video'>video</option>
+          </select>
+        </div>
         <br />
         <br />
-        <input
-          required
-          className='background-black p-1 rounded'
-          type='text'
-          name='projecttitle'
-          value={form.projecttitle}
-          onChange={e => changeField(e)}
-          placeholder='Project Name'
-        ></input>
-        <br />
-        <br />
-
-        <textarea
-          required
-          className='background-black p-1 rounded'
-          placeholder='Project Description'
-          name='projectdescription'
-          value={form.projectdescription}
-          onChange={e => changeField(e)}
-        ></textarea>
+        <div className='container mx-auto text-center bg-primary-blue p-5 md:flex md:items-center md:justify-center flex-col'>
+          <div className='md:flex flex-col md:items-center'>
+            <label className='pr-5 text-font-color mr-auto'>Username</label>
+            <input
+              required
+              className='background-black p-1 rounded'
+              type='text'
+              name='projecttitle'
+              value={form.projecttitle}
+              onChange={e => changeField(e)}
+              placeholder='Project Name'
+            ></input>
+          </div>
+          <br />
+          <div className='md:flex flex-col md:items-center'>
+            <label className='pr-5 text-font-color mr-auto'>
+              Project Description
+            </label>
+            <textarea
+              required
+              className='background-black p-1 rounded'
+              placeholder='Project Description'
+              name='projectdescription'
+              value={form.projectdescription}
+              onChange={e => changeField(e)}
+            ></textarea>
+          </div>
+        </div>
         <br />
         <br />
         <div>
