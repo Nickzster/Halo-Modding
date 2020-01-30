@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Post, Mirror } from '../../types/Post';
 import { sendData } from '../../utils/SendData';
+import InputContainer from '../../components/InputContainer';
+import Selector from '../../components/Selector';
 
 const NewPost = () => {
   const [form, updateForm] = useState({
@@ -95,105 +97,68 @@ const NewPost = () => {
         }}
         className='text-black'
       >
-        <div className='container mx-auto text-center bg-primary-blue p-5 md:flex md:items-center md:justify-center flex-col'>
-          <div className='md:flex flex-col md:items-center'>
-            <label className='pr-5 text-font-color mr-auto'>Username</label>
-            <input
-              required
-              className='background-black p-1 rounded'
-              type='text'
-              name='username'
-              value={form.username}
-              placeholder='Username'
-              onChange={e => changeField(e)}
-            ></input>
-          </div>
-          <br />
-          <div className='md:flex flex-col md:items-center'>
-            <label className='pr-5 text-font-color mr-auto'>Email</label>
-            <input
-              required
-              className='background-black p-1 rounded'
-              type='text'
-              placeholder='Email'
-              name='email'
-              value={form.email}
-              onChange={e => changeField(e)}
-            ></input>
-          </div>
-        </div>
+        <InputContainer
+          form={[
+            {
+              label: 'Username',
+              input: 'text',
+              name: 'username',
+              state: form.username,
+              cb: changeField
+            },
+            {
+              label: 'Email',
+              input: 'text',
+              name: 'email',
+              state: form.email,
+              cb: changeField
+            }
+          ]}
+        />
         <br />
-        <br />
-        <div className='bg-primary-blue p-3'>
-          <p className='text-xl text-font-color'>
-            What game does your project belong to?
-          </p>
-          <select
-            required
-            name='game'
-            onChange={e => {
-              changeField(e);
-            }}
-          >
-            <option value=''>--SELECT ONE--</option>
-            <option value='halo-custom-edition'>halo-custom-edition</option>
-            <option value='halo-2-vista'>halo-2-vista</option>
-            <option value='halo-ce'>halo-combat-evolved</option>
-            <option value='master-chief-collection'>
-              master-chief-collection
-            </option>
-          </select>
-        </div>
-        <br />
-        <br />
-        <div className='bg-primary-blue p-3'>
-          <p className='text-xl text-font-color'>
-            What category does your project belong to?
-          </p>
-          <select
-            required
-            name='projecttype'
-            onChange={e => {
-              changeField(e);
-            }}
-          >
-            <option value=''>--SELECT ONE--</option>
-            <option value='custom-map'>custom-map</option>
-            <option value='mod'>mod</option>
-            <option value='utility'>utility</option>
-            <option value='video'>video</option>
-          </select>
-        </div>
-        <br />
-        <br />
-        <div className='container mx-auto text-center bg-primary-blue p-5 md:flex md:items-center md:justify-center flex-col'>
-          <div className='md:flex flex-col md:items-center'>
-            <label className='pr-5 text-font-color mr-auto'>Username</label>
-            <input
-              required
-              className='background-black p-1 rounded'
-              type='text'
-              name='projecttitle'
-              value={form.projecttitle}
-              onChange={e => changeField(e)}
-              placeholder='Project Name'
-            ></input>
-          </div>
-          <br />
-          <div className='md:flex flex-col md:items-center'>
-            <label className='pr-5 text-font-color mr-auto'>
-              Project Description
-            </label>
-            <textarea
-              required
-              className='background-black p-1 rounded'
-              placeholder='Project Description'
-              name='projectdescription'
-              value={form.projectdescription}
-              onChange={e => changeField(e)}
-            ></textarea>
-          </div>
-        </div>
+        <Selector
+          title='What game does your project belong to?'
+          select={{ name: 'game', cb: changeField }}
+          options={[
+            { value: '', display: '--SELECT GAME---' },
+            { value: 'halo-custom-edition', display: 'Halo Custom Edition' },
+            { value: 'halo-2-vista', display: 'Halo 2 Vista' },
+            { value: 'halo-ce', display: 'Halo Combat Evolved' },
+            {
+              value: 'master-chief-collection',
+              display: 'Master Chief Collection'
+            }
+          ]}
+        />
+        <Selector
+          title='What category does your project belong to?'
+          select={{ name: 'projecttype', cb: changeField }}
+          options={[
+            { value: '', display: '--SELECT PROJECT TYPE--' },
+            { value: 'custom-map', display: 'Custom Map' },
+            { value: 'mod', display: 'Mod' },
+            { value: 'utility', display: 'Utility' },
+            { value: 'video', display: 'Video' }
+          ]}
+        />
+        <InputContainer
+          form={[
+            {
+              label: 'Project Name',
+              input: 'text',
+              name: 'projecttitle',
+              state: form.projecttitle,
+              cb: changeField
+            },
+            {
+              label: 'Project Description',
+              input: 'textarea',
+              name: 'projectdescription',
+              state: form.projectdescription,
+              cb: changeField
+            }
+          ]}
+        />
         <br />
         <br />
         <div>

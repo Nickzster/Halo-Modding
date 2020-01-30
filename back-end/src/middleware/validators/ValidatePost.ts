@@ -42,6 +42,7 @@ const checkMandatoryFields = (data: any): Array<Error> => {
 const validatePost = async (data): Promise<Post> => {
   let Errors: Array<Error> = checkMandatoryFields(data);
   if (Errors.length > 0) throw Errors;
+  //TODO: Validate toxicity for Project Mirrors and Download Links (Both Sources & URLS)
   let isToxic = await checkForToxicity([
     data.userinfo.username,
     data.description,
