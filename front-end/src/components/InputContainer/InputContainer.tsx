@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface Field {
   label: string;
@@ -15,20 +15,20 @@ interface Props {
 const InputContainer: React.FC<Props> = props => {
   const { form } = props;
   return (
-    <div className='container mx-auto text-center bg-primary-blue p-5 flex items-center justify-center flex-col'>
+    <div className="container mx-auto text-center bg-primary-blue p-5 flex items-center justify-center flex-col">
       {form.map(formItem => {
         return (
           <div
             key={formItem.name}
-            className='sm:w-96 md:w-96 lg:w-96 flex flex-col m-2 w-full'
+            className="sm:w-96 md:w-96 lg:w-96 flex flex-col m-2 w-full"
           >
-            <label className='pr-5 text-font-color mr-auto'>
+            <label className="pr-5 text-font-color mr-auto">
               {formItem.label}
             </label>
-            {formItem.input === 'text' ? (
+            {formItem.input === "text" ? (
               <input
                 required
-                className='background-black p-1 rounded'
+                className="background-black p-1 rounded"
                 type={formItem.input}
                 name={formItem.name}
                 value={formItem.state}
@@ -38,7 +38,7 @@ const InputContainer: React.FC<Props> = props => {
             ) : (
               <textarea
                 required
-                className='background-black p-1 rounded'
+                className="background-black p-1 rounded"
                 placeholder={formItem.label}
                 name={formItem.name}
                 value={formItem.state}

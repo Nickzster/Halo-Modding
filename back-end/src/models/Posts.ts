@@ -15,25 +15,34 @@ const PostSchema: Schema = new Schema({
     required: true
   },
   images: {
-    type: Array,
+    type: [
+      {
+        source: String,
+        url: String
+      }
+    ],
     required: true
   },
   description: {
     type: String,
     required: true
   },
-  downloadmirrors: [
-    {
-      Source: String,
-      URL: String
-    }
-  ],
-  projectmirrors: [
-    {
-      Source: String,
-      URL: String
-    }
-  ],
+  downloadmirrors: {
+    type: [
+      {
+        source: String,
+        url: String
+      }
+    ]
+  },
+  projectmirrors: {
+    type: [
+      {
+        source: String,
+        url: String
+      }
+    ]
+  },
   userinfo: {
     username: {
       type: String,

@@ -3,9 +3,9 @@ interface UserInfo {
   email: string;
 }
 
-export interface Mirror {
-  Source: string;
-  URL: string;
+export interface Link {
+  source: string;
+  url: string;
 }
 
 export interface Post {
@@ -14,10 +14,10 @@ export interface Post {
   projecttitle: string;
   game: string;
   projecttype: string;
-  images: Array<string>;
+  images: Array<Link>;
   description: string;
-  downloadmirrors: Array<Mirror>;
-  projectmirrors: Array<Mirror>;
+  downloadmirrors: Array<Link>;
+  projectmirrors: Array<Link>;
   projectstate?: string;
   isverified?: boolean;
 }

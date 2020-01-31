@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from '../../../types/Post';
 import '../../../styles/global.css';
 
 interface Props {
-  images: Array<string>;
+  images: Array<Link>;
 }
 
 const ImageCarousel: React.FC<Props> = props => {
@@ -11,7 +12,11 @@ const ImageCarousel: React.FC<Props> = props => {
   // console.log(currentImage);
   return (
     <div>
-      <img className='w-full' src={images[currentImage]} />
+      <img
+        className='w-full'
+        src={images[currentImage].url}
+        alt={images[currentImage].source}
+      />
       {images.length <= 1 ? null : (
         <div className='items-center justify-between flex'>
           <img

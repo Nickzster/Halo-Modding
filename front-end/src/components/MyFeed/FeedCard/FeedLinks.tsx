@@ -1,10 +1,8 @@
 import React from 'react';
+import { Link } from '../../../types/Post';
 
 interface Props {
-  Links: Array<{
-    Source: string;
-    URL: string;
-  }>;
+  Links: Array<Link>;
   HelperText: string;
 }
 
@@ -19,12 +17,12 @@ const FeedLinks: React.FunctionComponent<Props> = props => {
         else
           return (
             <a
-              key={link.URL}
+              key={link.url}
               className='p-2 hover:text-blue-500'
               target='_blank'
-              href={link.URL}
+              href={link.url}
             >
-              {link.Source}
+              {link.source}
             </a>
           );
       })}
