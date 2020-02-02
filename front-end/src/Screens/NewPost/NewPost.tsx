@@ -14,13 +14,13 @@ const NewPost = () => {
     game: "",
     projecttype: "",
     projecttitle: "",
-    projectdescription: "",
-    images: new StateArray<Link>({ source: "", url: "" }),
-    projectmirrors: new StateArray<Link>({ source: "", url: "" }),
-    downloadmirrors: new StateArray<Link>({ source: "", url: "" })
+    projectdescription: ""
   });
   const [success, updateSuccess] = useState(false);
   const [pending, updatePending] = useState(false);
+  const [projectmirrors, updateProjectMirrors] = useState(new Array<Link>());
+  const [downloadmirrors, updateDownloadMirrors] = useState(new Array<Link>());
+  const [images, updateImages] = useState(new Array<Link>());
   const [err, updateErrors] = useState({ errors: [] as Array<string> });
   const submitForm = (e: any) => {
     e.preventDefault();
@@ -31,9 +31,9 @@ const NewPost = () => {
       description: form.projectdescription,
       game: form.game,
       projecttype: form.projecttype,
-      images: form.images.get(),
-      projectmirrors: form.projectmirrors.get(),
-      downloadmirrors: form.downloadmirrors.get()
+      images: images,
+      projectmirrors: projectmirrors,
+      downloadmirrors: downloadmirrors
     };
     updatePending(true);
     sendData(submission)
@@ -152,18 +152,45 @@ const NewPost = () => {
         />
 
         {/* IMAGES */}
-        <Links title="Add Some Images" linkstate={form.images} />
+        <Links
+          title="Add Some Images"
+          state={images}
+          setstate={(newArr: Array<Link>) => {
+            console.log("Updating Images!");
+            updateImages(images.concat(newArr));
+          }}
+          removestate={() => {
+            updateImages(images.slice(0, images.length - 1));
+          }}
+        />
         {/* Project Mirrors */}
         <Links
           title="Still developing this project? Where should we go to see updates?"
-          linkstate={form.projectmirrors}
+          state={projectmirrors}
+          setstate={(newArr: Array<Link>) => {
+            console.log("Updating Project Mirrors!");
+            updateProjectMirrors(projectmirrors.concat(newArr));
+          }}
+          removestate={() => {
+            updateProjectMirrors(
+              projectmirrors.slice(0, projectmirrors.length - 1)
+            );
+          }}
         />
         {/* Download Mirrors */}
         <Links
           title="Releasing this project? Where should we go to download it?"
-          linkstate={form.downloadmirrors}
+          state={downloadmirrors}
+          setstate={(newArr: Array<Link>) => {
+            console.log("Updating Download Links!");
+            updateDownloadMirrors(downloadmirrors.concat(newArr));
+          }}
+          removestate={() => {
+            updateDownloadMirrors(
+              downloadmirrors.slice(0, downloadmirrors.length - 1)
+            );
+          }}
         />
-
         <br />
         <br />
         <input
