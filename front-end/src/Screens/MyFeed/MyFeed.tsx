@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import FeedCard from '../../components/MyFeed/FeedCard/FeedCard';
-import SamplePosts from '../../SampleData/SamplePosts.json';
-import '../../styles/global.css';
+import React, { useState, useEffect } from "react";
+import FeedCard from "../../components/MyFeed/FeedCard/FeedCard";
+import SamplePosts from "../../SampleData/SamplePosts.json";
+import "../../styles/global.css";
 //rxjs
-import { fromEvent } from 'rxjs';
-import Feed from '../../stores/Feed';
-import { debounceTime } from 'rxjs/operators';
-import { match } from 'react-router';
+import { fromEvent } from "rxjs";
+import Feed from "../../stores/Feed";
+import { debounceTime } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { match } from "react-router";
 
-const scroll = fromEvent(document, 'scroll');
+const scroll: Observable<Event> = fromEvent(document, "scroll").pipe(
+  debounceTime(200)
+);
 
 const needMoreData = () => {
   if (
@@ -30,24 +33,27 @@ const MyFeed: React.FC<Props> = props => {
   const [scrollEventIsLoaded, loadScrollEvent] = useState(false);
   useEffect(() => {
     console.log(location);
-    if (location && location.search && location.search !== '')
-      store.set('queries')(location.search);
-    if (store.get('posts').length === 0) store.set('loading')(true);
+    if (location && location.search && location.search !== "")
+      store.set("queries")(location.search);
+    if (store.get("posts").length === 0) store.set("loading")(true);
     if (!scrollEventIsLoaded) {
-      scroll.pipe(debounceTime(200)).subscribe(() => {
-        if (needMoreData()) store.set('loading')(true);
+      var subscriber = scroll.subscribe(() => {
+        if (needMoreData()) store.set("loading")(true);
       });
-      console.log('Scroll Event is loaded!');
+      console.log("Scroll Event is loaded!");
       loadScrollEvent(true);
     }
-  }, [store.get('loading')]);
+    return () => {
+      subscriber.unsubscribe();
+    };
+  }, []);
   return (
-    <div className='container mx-auto'>
-      {store.get('posts').map(post => {
+    <div className="container mx-auto">
+      {store.get("posts").map(post => {
         return <FeedCard key={post.projecttitle} Data={post} />;
       })}
-      {store.get('reachedBottom') ? (
-        <h1 className='text-font-color text-center mb-16'>
+      {store.get("reachedBottom") ? (
+        <h1 className="text-font-color text-center mb-16">
           Looks like you've reached the bottom!
         </h1>
       ) : null}

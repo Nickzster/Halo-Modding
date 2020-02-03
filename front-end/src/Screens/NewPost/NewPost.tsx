@@ -154,6 +154,7 @@ const NewPost = () => {
         {/* IMAGES */}
         <Links
           title="Add Some Images"
+          directions="Add images so that people can see what your project looks like!"
           state={images}
           setstate={(newArr: Array<Link>) => {
             console.log("Updating Images!");
@@ -165,7 +166,8 @@ const NewPost = () => {
         />
         {/* Project Mirrors */}
         <Links
-          title="Still developing this project? Where should we go to see updates?"
+          title="Project Mirrors"
+          directions="Still developing this project? Where should we go to see updates?"
           state={projectmirrors}
           setstate={(newArr: Array<Link>) => {
             console.log("Updating Project Mirrors!");
@@ -179,7 +181,8 @@ const NewPost = () => {
         />
         {/* Download Mirrors */}
         <Links
-          title="Releasing this project? Where should we go to download it?"
+          title="Download Mirrors"
+          directions="Releasing this project? Where should we go to download it?"
           state={downloadmirrors}
           setstate={(newArr: Array<Link>) => {
             console.log("Updating Download Links!");
@@ -195,7 +198,7 @@ const NewPost = () => {
         <br />
         <input
           type="submit"
-          className="bg-blue-700 text-white rounded p-2 text-3xl cursor-pointer"
+          className="bg-blue-700 text-white rounded p-2 text-3xl cursor-pointer mb-4"
           value="Create New Post"
           disabled={pending}
         />

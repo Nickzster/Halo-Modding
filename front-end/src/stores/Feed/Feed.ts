@@ -1,7 +1,7 @@
-import { Effects, createConnectedStore } from 'undux';
-import { Post } from '../../types/Post';
-import { Error } from '../../types/Error';
-import { baseURL } from '../../utils/url';
+import { Effects, createConnectedStore } from "undux";
+import { Post } from "../../types/Post";
+import { Error } from "../../types/Error";
+import { baseURL } from "../../utils/url";
 // import
 
 // Declare your store's types.
@@ -19,41 +19,41 @@ const initialState: State = {
   posts: [],
   reachedBottom: false,
   page: 0,
-  queries: ''
+  queries: ""
 };
 
 const getData = async (query: string): Promise<Post[] | Error> => {
   console.log(query);
   console.log(`fetching: ${baseURL}/posts${query}`);
   let data: Promise<Post[] | Error> = (
-    await fetch(baseURL + '/posts' + query)
+    await fetch(baseURL + "/posts" + query)
   ).json();
   return data;
 };
 
 let effects: StoreEffects = store => {
-  store.on('loading').subscribe(async () => {
-    if (store.get('loading')) {
-      if (store.get('reachedBottom') === false) {
+  store.on("loading").subscribe(async () => {
+    if (store.get("loading")) {
+      if (store.get("reachedBottom") === false) {
         let queryString = ``;
-        let currentPage = store.get('page');
+        let currentPage = store.get("page");
         currentPage++;
-        store.set('page')(currentPage);
-        queryString += store.get('queries');
-        console.log(!!store.get('queries'));
-        if (!!store.get('queries')) queryString += `&page=${store.get('page')}`;
-        else queryString += `?page=${store.get('page')}`;
+        store.set("page")(currentPage);
+        queryString += store.get("queries");
+        console.log(!!store.get("queries"));
+        if (!!store.get("queries")) queryString += `&page=${store.get("page")}`;
+        else queryString += `?page=${store.get("page")}`;
         let response: any = await getData(queryString);
-        console.log('RESPONSE', response);
+        console.log("RESPONSE", response);
         if (response && response.code) {
-          console.log('WE ARE AT THE BOTTOM!');
-          store.set('reachedBottom')(true);
+          console.log("WE ARE AT THE BOTTOM!");
+          store.set("reachedBottom")(true);
         } else {
-          console.log('APPEND NEW POSTS!');
-          store.set('posts')(store.get('posts').concat(response));
+          console.log("APPEND NEW POSTS!");
+          store.set("posts")(store.get("posts").concat(response));
         }
       }
-      store.set('loading')(false);
+      store.set("loading")(false);
     }
   });
   return store;
