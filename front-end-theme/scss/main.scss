@@ -1,0 +1,16 @@
+//components
+@use './components/navbar';
+@use './components/util' as *;
+@use './components/footer.scss';
+//screens
+@use './screens/feed.scss';
+@use './screens/landingpage.scss';
+@use './screens/createpost.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "sans-serif";
+  background-color: color(primary);
+  color: color(font);
+}

@@ -1,0 +1,94 @@
+@use '../components/util.scss' as *;
+
+.feed-container {
+  .card-container {
+    margin: 2em 0em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.card {
+  background: color(trim);
+  border-radius: 0.5em;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  margin-bottom: 2em;
+  .card-profile-header {
+    padding: 1em 2em;
+    font-size: 1.5em;
+  }
+  .card-image-carousel {
+    background-color: color(primary);
+    img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 0em;
+      padding-bottom: 0em;
+    }
+
+    padding-bottom: 0em;
+    margin-bottom: 0em;
+  }
+  .card-image-controller {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: color(primary);
+    padding-top: 0em;
+    margin-top: 0em;
+
+    img {
+      width: 10%;
+      padding-top: 0em;
+      margin-top: 0em;
+      cursor: pointer;
+    }
+  }
+  .card-information {
+    h3 {
+      margin-left: 1em;
+    }
+    .card-bubble-container {
+      display: flex;
+      flex-direction: row;
+
+      .card-bubble {
+        padding: 0.5em;
+        margin: 0.2em 0.5em;
+        border-radius: 0.5em;
+        background: color(primary);
+      }
+    }
+    .card-description {
+      margin: 0em 1em;
+    }
+  }
+  .card-links-container {
+    background-color: color(primary);
+    padding: 0.8em;
+    padding-left: 1em;
+
+    .card-links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      p {
+        margin: 0em;
+        padding: 0em;
+        padding-bottom: 0.8em;
+      }
+      a {
+        color: color(font);
+        text-decoration: none;
+        padding: 0.6em;
+        background-color: color(trim);
+        margin: 0.3em;
+        text-align: center;
+        border-radius: 0.2em;
+      }
+    }
+  }
+}

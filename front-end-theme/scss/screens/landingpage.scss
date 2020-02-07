@@ -1,0 +1,85 @@
+@use '../components/util.scss' as *;
+
+.landingpage-container {
+  color: color(font);
+  section.welcome {
+    width: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url("https://cdna.artstation.com/p/assets/images/images/000/939/490/large/anthony-chester-haloce-2015-07-10-12-02-31-66.jpg?1436559516&dl=1");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .large {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .small {
+      font-size: 1.5em;
+    }
+  }
+  .info-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.8em;
+    background-color: color(trim);
+    padding: 1em;
+    margin: 2em 0em;
+    border-radius: 1em;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+    .link-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      a {
+        text-decoration: none;
+        color: color(font);
+        background: color(primary-light);
+        padding: 1em;
+        margin: 1em;
+        border-radius: 0.3em;
+        width: 40%;
+        @include md-desktop {
+          width: 15%;
+        }
+        @include xl-desktop {
+          width: 20%;
+        }
+      }
+    }
+
+    @include tablet {
+      margin: 2em 2em;
+    }
+  }
+  .info-card-container {
+    display: flex;
+    flex-direction: column;
+    @include md-desktop {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+  }
+
+  #getting-started {
+    @include sm-desktop {
+      margin: 1em 5em;
+    }
+    @include md-desktop {
+      margin: 1em 10em;
+    }
+    @include lg-desktop {
+      margin: 1em 15em;
+    }
+    @include xl-desktop {
+      margin: 1em 50em;
+    }
+  }
+}

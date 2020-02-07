@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Create New Post</title>
+  </head>
+  <body>
+    <!--NavBar-->
+    <nav class="navbar-container">
+      <a href="#">
+        <img id="logo" src="../assets/ForgeLogo.png" />
+      </a>
+      <img id="menu" src="../assets/menu-24px.svg" />
+    </nav>
+    <div class="form-container">
+      <form>
+        <section class="text-input-container">
+          <label>Username</label>
+          <input type="text" placeholder="Username" />
+          <label>Email</label>
+          <input type="text" placeholder="Email" />
+        </section>
+        <section class="dropdown-container">
+          <p>What game does your project belong to?</p>
+          <label>Game</label>
+          <select>
+            <option>--SELECT GAME---</option>
+            <option>Halo Combat Evolved</option>
+            <option>Halo Custom Edition</option>
+            <option>Halo 2 Vista</option>
+            <option>Master Chief Collection</option>
+          </select>
+        </section>
+        <section class="dropdown-container">
+          <p>What category does your project belong to?</p>
+          <label>Project Category</label>
+          <select>
+            <option>--SELECT CATEGORY---</option>
+            <option>Custom Map</option>
+            <option>Mappack</option>
+            <option>Mod</option>
+            <option>Utility</option>
+            <option>Video</option>
+          </select>
+        </section>
+        <section class="text-input-container">
+          <label>Project Name</label>
+          <input type="text" placeholder="Project Name" />
+          <label>Project Description</label>
+          <textarea placeholder="Project Description"></textarea>
+        </section>
+        <section class="modify-link-container">
+          <p>Project Mirrors</p>
+          <section class="links">
+            <input type="text" placeholder="Website Name" disabled="true" />
+            <input type="text" placeholder="Website URL" disabled="true" />
+          </section>
+          <section class="links">
+            <input type="text" placeholder="Website Name" disabled="true" />
+            <input type="text" placeholder="Website URL" disabled="true" />
+          </section>
+          <section class="links">
+            <input type="text" placeholder="Website Name" />
+            <input type="text" placeholder="Website URL" />
+          </section>
+          <section class="buttons">
+            <button id="add">Add</button>
+            <button id="remove">Remove</button>
+          </section>
+        </section>
+        <section class="modify-link-container">
+          <p>Download Mirrors</p>
+          <section class="links">
+            <input type="text" placeholder="Website Name" />
+            <input type="text" placeholder="Website URL" />
+          </section>
+          <section class="buttons">
+            <button id="add">Add</button>
+            <button id="remove">Remove</button>
+          </section>
+        </section>
+        <section class="submit">
+          <button>Create New Post</button>
+        </section>
+      </form>
+    </div>
+    <footer>
+      <p>
+        This website has no affiliation or connection with Bungie, 343
+        Industries, or Microsoft Corporation. This is a fan-made app to share
+        modded content with the halo community. <br /><br />
+        Website Design &copy; 2020, Nickster5000
+      </p>
+    </footer>
+  </body>
+</html>
