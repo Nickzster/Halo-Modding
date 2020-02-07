@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn sass --watch scss/main.scss css/main.css",
-    "build": ""
+    "build": "yarn sass scss/main.scss ../front-end/src/styles/new.css"
   },
   "dependencies": {
     "node-sass": "^4.13.1",
