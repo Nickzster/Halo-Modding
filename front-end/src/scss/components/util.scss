@@ -1,0 +1,55 @@
+$colors: (
+  primary: #202c3a,
+  primary-light: #4981c2,
+  trim: #2c394b,
+  font: #e2e8f7,
+  error: #db4848,
+  select: #855a54
+);
+
+@mixin sm-phone {
+  @media (min-width: 320px) {
+    @content;
+  }
+}
+@mixin md-phone {
+  @media (min-width: 360px) {
+    @content;
+  }
+}
+@mixin lg-phone {
+  @media (min-width: 410px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin sm-desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+@mixin md-desktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin lg-desktop {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin xl-desktop {
+  @media (min-width: 2000px) {
+    @content;
+  }
+}
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}

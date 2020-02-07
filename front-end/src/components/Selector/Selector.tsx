@@ -1,5 +1,5 @@
-import React from 'react';
-import Option from './Option';
+import React from "react";
+import Option from "./Option";
 
 interface Select {
   value: string;
@@ -18,9 +18,13 @@ interface Props {
 const Selector: React.FC<Props> = props => {
   const { select, options, title } = props;
   return (
-    <div className='bg-primary-blue p-3 mb-6'>
-      <p className='text-xl text-font-color'>{title}</p>
-      <select name={select.name} onChange={e => select.cb(e)}>
+    <div className="dropdown-container">
+      <p>{title}</p>
+      <select
+        style={{ color: "black" }}
+        name={select.name}
+        onChange={e => select.cb(e)}
+      >
         {options.map(o => {
           return <Option key={o.value} value={o.value} display={o.display} />;
         })}

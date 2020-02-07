@@ -1,0 +1,49 @@
+@import "./util.scss";
+
+nav.navbar-container {
+  background-color: color(trim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid color(font);
+  img#logo {
+    width: 25%;
+    height: auto;
+    padding: 1em;
+    padding-left: 1.5em;
+    cursor: pointer;
+    @include lg-phone {
+      width: 20%;
+    }
+    @include tablet {
+      width: 17%;
+    }
+    // @include lg-desktop {
+    //   width: 8.2%;
+    // }
+  }
+  img#menu {
+    width: 20%;
+    height: auto;
+    padding-right: 1.5em;
+    cursor: pointer;
+    @include lg-phone {
+      width: 17%;
+    }
+    @include tablet {
+      width: 8%;
+    }
+    @include sm-desktop {
+      width: 6%;
+    }
+    @include md-desktop {
+      width: 5.5%;
+    }
+    @include lg-desktop {
+      width: 4%;
+    }
+    @include xl-desktop {
+      width: 3%;
+    }
+  }
+}

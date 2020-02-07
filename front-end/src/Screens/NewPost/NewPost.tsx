@@ -6,6 +6,7 @@ import InputContainer from "../../components/InputContainer";
 import Selector from "../../components/Selector";
 import StateArray from "../../utils/classes/StateArray";
 import Links from "../../components/Links";
+import "../../scss/screens/createpost.scss";
 
 const NewPost = () => {
   const [form, updateForm] = useState({
@@ -69,141 +70,148 @@ const NewPost = () => {
   if (success) return <Redirect to="/feed" />;
   if (pending)
     return (
-      <React.Fragment>
-        <h1 className="container mx-auto text-center text-font-color text-2xl">
-          Submitting post...
-        </h1>
-      </React.Fragment>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh"
+        }}
+      >
+        <h1>Submitting post...</h1>
+      </div>
     );
   return (
-    <div className="container mx-auto text-center">
-      <h1 className="text-3xl text-font-color">Share Your Project</h1>
-      {err.errors.map((error: string) => (
-        <p className="text-red-500 bg-primary-blue p-5 m-3">{error}</p>
-      ))}
-      <form
-        onSubmit={e => {
-          console.log("Form is being submitted!");
-          submitForm(e);
-        }}
-        className="text-black"
-      >
-        <InputContainer
-          form={[
-            {
-              label: "Username",
-              input: "text",
-              name: "username",
-              state: form.username,
-              cb: changeField
-            },
-            {
-              label: "Email",
-              input: "text",
-              name: "email",
-              state: form.email,
-              cb: changeField
-            }
-          ]}
-        />
-        <br />
-        <Selector
-          title="What game does your project belong to?"
-          select={{ name: "game", cb: changeField }}
-          options={[
-            { value: "", display: "--SELECT GAME---" },
-            { value: "halo-custom-edition", display: "Halo Custom Edition" },
-            { value: "halo-2-vista", display: "Halo 2 Vista" },
-            { value: "halo-ce", display: "Halo Combat Evolved" },
-            {
-              value: "master-chief-collection",
-              display: "Master Chief Collection"
-            }
-          ]}
-        />
-        <Selector
-          title="What category does your project belong to?"
-          select={{ name: "projecttype", cb: changeField }}
-          options={[
-            { value: "", display: "--SELECT PROJECT TYPE--" },
-            { value: "custom-map", display: "Custom Map" },
-            { value: "mod", display: "Mod" },
-            { value: "utility", display: "Utility" },
-            { value: "video", display: "Video" }
-          ]}
-        />
-        <InputContainer
-          form={[
-            {
-              label: "Project Name",
-              input: "text",
-              name: "projecttitle",
-              state: form.projecttitle,
-              cb: changeField
-            },
-            {
-              label: "Project Description",
-              input: "textarea",
-              name: "projectdescription",
-              state: form.projectdescription,
-              cb: changeField
-            }
-          ]}
-        />
+    <React.Fragment>
+      <div className="form-container">
+        <h1>Share Your Project</h1>
+        {err.errors.map((error: string) => (
+          <p className="errors">{error}</p>
+        ))}
+        <form
+          onSubmit={e => {
+            console.log("Form is being submitted!");
+            submitForm(e);
+          }}
+        >
+          <InputContainer
+            form={[
+              {
+                label: "Username",
+                input: "text",
+                name: "username",
+                state: form.username,
+                cb: changeField
+              },
+              {
+                label: "Email",
+                input: "text",
+                name: "email",
+                state: form.email,
+                cb: changeField
+              }
+            ]}
+          />
+          <Selector
+            title="What game does your project belong to?"
+            select={{ name: "game", cb: changeField }}
+            options={[
+              { value: "", display: "--SELECT GAME---" },
+              { value: "halo-custom-edition", display: "Halo Custom Edition" },
+              { value: "halo-2-vista", display: "Halo 2 Vista" },
+              { value: "halo-ce", display: "Halo Combat Evolved" },
+              {
+                value: "master-chief-collection",
+                display: "Master Chief Collection"
+              }
+            ]}
+          />
+          <Selector
+            title="What category does your project belong to?"
+            select={{ name: "projecttype", cb: changeField }}
+            options={[
+              { value: "", display: "--SELECT PROJECT TYPE--" },
+              { value: "custom-map", display: "Custom Map" },
+              { value: "mod", display: "Mod" },
+              { value: "utility", display: "Utility" },
+              { value: "video", display: "Video" }
+            ]}
+          />
+          <InputContainer
+            form={[
+              {
+                label: "Project Name",
+                input: "text",
+                name: "projecttitle",
+                state: form.projecttitle,
+                cb: changeField
+              },
+              {
+                label: "Project Description",
+                input: "textarea",
+                name: "projectdescription",
+                state: form.projectdescription,
+                cb: changeField
+              }
+            ]}
+          />
 
-        {/* IMAGES */}
-        <Links
-          title="Add Some Images"
-          directions="Add images so that people can see what your project looks like!"
-          state={images}
-          setstate={(newArr: Array<Link>) => {
-            console.log("Updating Images!");
-            updateImages(images.concat(newArr));
-          }}
-          removestate={() => {
-            updateImages(images.slice(0, images.length - 1));
-          }}
-        />
-        {/* Project Mirrors */}
-        <Links
-          title="Project Mirrors"
-          directions="Still developing this project? Where should we go to see updates?"
-          state={projectmirrors}
-          setstate={(newArr: Array<Link>) => {
-            console.log("Updating Project Mirrors!");
-            updateProjectMirrors(projectmirrors.concat(newArr));
-          }}
-          removestate={() => {
-            updateProjectMirrors(
-              projectmirrors.slice(0, projectmirrors.length - 1)
-            );
-          }}
-        />
-        {/* Download Mirrors */}
-        <Links
-          title="Download Mirrors"
-          directions="Releasing this project? Where should we go to download it?"
-          state={downloadmirrors}
-          setstate={(newArr: Array<Link>) => {
-            console.log("Updating Download Links!");
-            updateDownloadMirrors(downloadmirrors.concat(newArr));
-          }}
-          removestate={() => {
-            updateDownloadMirrors(
-              downloadmirrors.slice(0, downloadmirrors.length - 1)
-            );
-          }}
-        />
-        <br />
-        <br />
-        <input
-          type="submit"
-          className="bg-blue-700 text-white rounded p-2 text-3xl cursor-pointer mb-4"
-          value="Create New Post"
-          disabled={pending}
-        />
-      </form>
-    </div>
+          {/* IMAGES */}
+          <Links
+            title="Add Some Images"
+            directions="Add images so that people can see what your project looks like!"
+            state={images}
+            setstate={(newArr: Array<Link>) => {
+              console.log("Updating Images!");
+              updateImages(images.concat(newArr));
+            }}
+            removestate={() => {
+              updateImages(images.slice(0, images.length - 1));
+            }}
+          />
+          {/* Project Mirrors */}
+          <Links
+            title="Project Mirrors"
+            directions="Still developing this project? Where should we go to see updates?"
+            state={projectmirrors}
+            setstate={(newArr: Array<Link>) => {
+              console.log("Updating Project Mirrors!");
+              updateProjectMirrors(projectmirrors.concat(newArr));
+            }}
+            removestate={() => {
+              updateProjectMirrors(
+                projectmirrors.slice(0, projectmirrors.length - 1)
+              );
+            }}
+          />
+          {/* Download Mirrors */}
+          <Links
+            title="Download Mirrors"
+            directions="Releasing this project? Where should we go to download it?"
+            state={downloadmirrors}
+            setstate={(newArr: Array<Link>) => {
+              console.log("Updating Download Links!");
+              updateDownloadMirrors(downloadmirrors.concat(newArr));
+            }}
+            removestate={() => {
+              updateDownloadMirrors(
+                downloadmirrors.slice(0, downloadmirrors.length - 1)
+              );
+            }}
+          />
+          <section className="submit">
+            <button
+              style={{ marginBottom: "3em" }}
+              type="submit"
+              disabled={pending}
+            >
+              Create New Post
+            </button>
+          </section>
+        </form>
+      </div>
+    </React.Fragment>
   );
 };
 

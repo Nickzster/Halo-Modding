@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from '../../../types/Post';
-import '../../../styles/global.css';
+import React, { useState } from "react";
+import { Link } from "../../../types/Post";
 
 interface Props {
   images: Array<Link>;
@@ -11,33 +10,29 @@ const ImageCarousel: React.FC<Props> = props => {
   const [currentImage, changeCurrentImage] = useState(0);
   // console.log(currentImage);
   return (
-    <div>
-      <img
-        className='w-full'
-        src={images[currentImage].url}
-        alt={images[currentImage].source}
-      />
+    <React.Fragment>
+      <section className="card-image-carousel">
+        <img src={images[currentImage].url} alt={images[currentImage].source} />
+      </section>
       {images.length <= 1 ? null : (
-        <div className='items-center justify-between flex'>
+        <section className="card-image-controller">
           <img
-            className='left-0 h-12 w-12 cursor-pointer inline'
-            src={require('../../../images/left.svg')}
+            src={require("../../../images/left.svg")}
             onClick={() => {
               if (currentImage - 1 < 0) changeCurrentImage(images.length - 1);
               else changeCurrentImage(currentImage - 1);
             }}
           />
           <img
-            className='right-0 h-12 w-12 cursor-pointer inline'
-            src={require('../../../images/right.svg')}
+            src={require("../../../images/right.svg")}
             onClick={() => {
               if (currentImage + 1 >= images.length) changeCurrentImage(0);
               else changeCurrentImage(currentImage + 1);
             }}
           />
-        </div>
+        </section>
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

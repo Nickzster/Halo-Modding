@@ -15,20 +15,14 @@ interface Props {
 const InputContainer: React.FC<Props> = props => {
   const { form } = props;
   return (
-    <div className="container mx-auto text-center bg-primary-blue p-5 flex items-center justify-center flex-col">
+    <React.Fragment>
       {form.map(formItem => {
         return (
-          <div
-            key={formItem.name}
-            className="sm:w-96 md:w-96 lg:w-96 flex flex-col m-2 w-full"
-          >
-            <label className="pr-5 text-font-color mr-auto">
-              {formItem.label}
-            </label>
+          <section key={formItem.name} className="text-input-container">
+            <label>{formItem.label}</label>
             {formItem.input === "text" ? (
               <input
                 required
-                className="background-black p-1 rounded"
                 type={formItem.input}
                 name={formItem.name}
                 value={formItem.state}
@@ -37,18 +31,18 @@ const InputContainer: React.FC<Props> = props => {
               ></input>
             ) : (
               <textarea
+                style={{ color: "black", padding: "0.5em" }}
                 required
-                className="background-black p-1 rounded"
                 placeholder={formItem.label}
                 name={formItem.name}
                 value={formItem.state}
                 onChange={e => formItem.cb(e)}
               ></textarea>
             )}
-          </div>
+          </section>
         );
       })}
-    </div>
+    </React.Fragment>
   );
 };
 

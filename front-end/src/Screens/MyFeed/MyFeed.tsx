@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import FeedCard from "../../components/MyFeed/FeedCard/FeedCard";
 import SamplePosts from "../../SampleData/SamplePosts.json";
-import "../../styles/global.css";
 //rxjs
 import { fromEvent } from "rxjs";
 import Feed from "../../stores/Feed";
 import { debounceTime } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { match } from "react-router";
+import "../../scss/screens/feed.scss";
 
 const scroll: Observable<Event> = fromEvent(document, "scroll").pipe(
   debounceTime(200)
@@ -48,14 +48,14 @@ const MyFeed: React.FC<Props> = props => {
     };
   }, []);
   return (
-    <div className="container mx-auto">
-      {store.get("posts").map(post => {
-        return <FeedCard key={post.projecttitle} Data={post} />;
-      })}
+    <div className="feed-container">
+      <div className="card-container">
+        {store.get("posts").map(post => {
+          return <FeedCard key={post.projecttitle} Data={post} />;
+        })}
+      </div>
       {store.get("reachedBottom") ? (
-        <h1 className="text-font-color text-center mb-16">
-          Looks like you've reached the bottom!
-        </h1>
+        <h1>Looks like you've reached the bottom!</h1>
       ) : null}
     </div>
   );
