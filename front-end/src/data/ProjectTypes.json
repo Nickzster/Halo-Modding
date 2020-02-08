@@ -1,0 +1,62 @@
+[
+  {
+    "display": "Custom Multiplayer",
+    "value": "multiplayer"
+  },
+  {
+    "display": "Modded Multiplayer",
+    "value": "modded-mp"
+  },
+  {
+    "display": "Custom Single Player",
+    "value": "single-player"
+  },
+  {
+    "display": "Modded Single Player",
+    "value": "modded-sp"
+  },
+  {
+    "display": "Custom Firefight",
+    "value": "custom-firefight"
+  },
+  {
+    "display": "Modded Firefight",
+    "value": "modded-firefight"
+  },
+  {
+    "display": "Mappack",
+    "value": "mappack"
+  },
+  {
+    "display": "GameType",
+    "value": "gametype"
+  },
+  {
+    "display": "Role Playing",
+    "value": "rp"
+  },
+  {
+    "display": "Utility",
+    "value": "utility"
+  },
+  {
+    "display": "Vehicle Asset",
+    "value": "vehicle-asset"
+  },
+  {
+    "display": "Weapon Asset",
+    "value": "weapon-asset"
+  },
+  {
+    "display": "Character Asset",
+    "value": "character-asset"
+  },
+  {
+    "display": "Misc. Asset",
+    "value": "misc-asset"
+  },
+  {
+    "display": "Video",
+    "value": "video"
+  }
+]

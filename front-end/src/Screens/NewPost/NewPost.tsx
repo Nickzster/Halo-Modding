@@ -4,6 +4,7 @@ import { Post, Link } from "../../types/Post";
 import { sendData } from "../../utils/SendData";
 import InputContainer from "../../components/InputContainer";
 import Selector from "../../components/Selector";
+import ProjectTypes from "../../data/ProjectTypes.json";
 import StateArray from "../../utils/classes/StateArray";
 import Links from "../../components/Links";
 import "../../scss/screens/createpost.scss";
@@ -130,13 +131,9 @@ const NewPost = () => {
           <Selector
             title="What category does your project belong to?"
             select={{ name: "projecttype", cb: changeField }}
-            options={[
-              { value: "", display: "--SELECT PROJECT TYPE--" },
-              { value: "custom-map", display: "Custom Map" },
-              { value: "mod", display: "Mod" },
-              { value: "utility", display: "Utility" },
-              { value: "video", display: "Video" }
-            ]}
+            options={[{ value: "", display: "--SELECT PROJECT TYPE--" }].concat(
+              ProjectTypes
+            )}
           />
           <InputContainer
             form={[
