@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import FeedCard from "../../components/MyFeed/FeedCard/FeedCard";
+import { Link } from "react-router-dom";
+import { Query } from "../../types/Query";
+import { createQueryFromProps } from "../../utils/CreateQuery";
 import SamplePosts from "../../SampleData/SamplePosts.json";
 //rxjs
 import { fromEvent } from "rxjs";
@@ -26,6 +29,7 @@ interface Props {
   location: any;
   match: any;
 }
+//TODO: Refactor duplicate explore button
 
 const MyFeed: React.FC<Props> = props => {
   const { location } = props;
@@ -55,7 +59,37 @@ const MyFeed: React.FC<Props> = props => {
         })}
       </div>
       {store.get("reachedBottom") ? (
-        <h1>Looks like you've reached the bottom!</h1>
+        store.get("posts").length === 0 ? (
+          <div style={{ height: "75vh", textAlign: "center" }}>
+            <h1>No posts found with the given critera.</h1>
+            <Link
+              style={{
+                color: "white",
+                textDecoration: "none",
+                padding: "1em",
+                background: "#4981c2"
+              }}
+              to="/explore"
+            >
+              Go back to Explore
+            </Link>
+          </div>
+        ) : (
+          <React.Fragment>
+            <h2>Looks like you've reached the bottom!</h2>
+            <Link
+              style={{
+                color: "white",
+                textDecoration: "none",
+                padding: "1em",
+                background: "#4981c2"
+              }}
+              to="/explore"
+            >
+              Go back to Explore
+            </Link>
+          </React.Fragment>
+        )
       ) : null}
     </div>
   );

@@ -5,6 +5,7 @@ interface Field {
   name: string;
   state: any;
   input: string;
+  placeholder?: string;
   cb: Function;
 }
 
@@ -26,7 +27,11 @@ const InputContainer: React.FC<Props> = props => {
                 type={formItem.input}
                 name={formItem.name}
                 value={formItem.state}
-                placeholder={formItem.label}
+                placeholder={
+                  formItem && formItem.placeholder
+                    ? formItem.placeholder
+                    : formItem.label
+                }
                 onChange={e => formItem.cb(e)}
               ></input>
             ) : (

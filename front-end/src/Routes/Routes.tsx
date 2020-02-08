@@ -13,7 +13,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/feed" component={LoadFeed} />
         <Route exact path="/create-new-post" component={LoadCreateNewPost} />
-        {/* <Route exact path='/explore' component={Explore} /> */}
+        <Route exact path="/explore" component={Explore} />
         <Route component={NotFound} />
       </Switch>
     </React.Fragment>

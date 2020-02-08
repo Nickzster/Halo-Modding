@@ -1,6 +1,6 @@
-import React from 'react';
-import Feed from '../../stores/Feed';
-import MyFeed from '../../Screens/MyFeed';
+import React from "react";
+import Feed from "../../stores/Feed";
+import MyFeed from "../../Screens/MyFeed";
 
 interface Props {
   location: any;

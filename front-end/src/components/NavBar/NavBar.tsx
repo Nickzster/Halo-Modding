@@ -29,7 +29,7 @@ const Navbar: React.FunctionComponent = () => {
             <p>Close Menu</p>
           </div>
           <Link
-            to="/feed"
+            to="/explore"
             className="list-item"
             onClick={() => {
               toggleSidePanel(!sidePanel);

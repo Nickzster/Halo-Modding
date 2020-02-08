@@ -105,7 +105,7 @@ const LandingPage = () => {
       <div id="getting-started" className="info-card">
         <h2>Getting Started</h2>
         <div className="link-container">
-          <Link to="/feed">Explore</Link>
+          <Link to="/explore">Explore</Link>
           <Link to="/create-new-post">Upload Project</Link>
         </div>
       </div>
