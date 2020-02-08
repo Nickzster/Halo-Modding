@@ -39,7 +39,7 @@ const FeedCard: React.FunctionComponent<Props> = props => {
           <p>{description}</p>
         </section>
       </section>
-      <FeedLinks HelperText="Download at: " Links={downloadmirrors} />
+      <FeedLinks HelperText="Downloads: " Links={downloadmirrors} />
       <FeedLinks HelperText="More Info: " Links={projectmirrors} />
     </div>
   );

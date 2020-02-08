@@ -5,6 +5,7 @@ import { sendData } from "../../utils/SendData";
 import InputContainer from "../../components/InputContainer";
 import Selector from "../../components/Selector";
 import ProjectTypes from "../../data/ProjectTypes.json";
+import Games from "../../data/Games.json";
 import StateArray from "../../utils/classes/StateArray";
 import Links from "../../components/Links";
 import "../../scss/screens/createpost.scss";
@@ -117,16 +118,7 @@ const NewPost = () => {
           <Selector
             title="What game does your project belong to?"
             select={{ name: "game", cb: changeField }}
-            options={[
-              { value: "", display: "--SELECT GAME---" },
-              { value: "halo-custom-edition", display: "Halo Custom Edition" },
-              { value: "halo-2-vista", display: "Halo 2 Vista" },
-              { value: "halo-ce", display: "Halo Combat Evolved" },
-              {
-                value: "master-chief-collection",
-                display: "Master Chief Collection"
-              }
-            ]}
+            options={[{ value: "", display: "--SELECT GAME---" }].concat(Games)}
           />
           <Selector
             title="What category does your project belong to?"
