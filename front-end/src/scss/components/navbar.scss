@@ -1,22 +1,81 @@
 @import "./util.scss";
 
 nav.navbar-container {
+  position: fixed;
+  top: 0;
   background-color: color(trim);
+  width: 100%;
+  margin-bottom: 2em;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid color(font);
+  .side-panel {
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    width: 60%;
+    top: 0;
+    right: 0;
+    text-align: left;
+    background: color(primary);
+    height: 100%;
+    z-index: 7;
+    padding-top: 0em;
+    border-left: 2px solid color(font);
+    line-height: 2em;
+    margin-top: 0;
+    @include tablet {
+      width: 35%;
+    }
+    @include sm-desktop {
+      width: 28%;
+    }
+    @include md-desktop {
+      width: 25%;
+    }
+    @include lg-desktop {
+      width: 20%;
+    }
+    @include xl-desktop {
+      width: 15%;
+    }
+    .list-item {
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      list-style: none;
+      color: color(font);
+      background: color(trim);
+      padding: 0;
+      padding: 0.5em;
+      padding-left: 2em;
+      img {
+        padding: 0em;
+        margin: 0em;
+        padding-right: 1em;
+      }
+    }
+    .list-item:hover {
+      background: color(select);
+    }
+  }
   img#logo {
-    width: 25%;
+    width: 15%;
     height: auto;
     padding: 1em;
     padding-left: 1.5em;
     cursor: pointer;
+    @include md-phone {
+      width: 14%;
+    }
     @include lg-phone {
-      width: 20%;
+      width: 14%;
     }
     @include tablet {
-      width: 17%;
+      width: 10%;
     }
     // @include lg-desktop {
     //   width: 8.2%;
@@ -27,23 +86,26 @@ nav.navbar-container {
     height: auto;
     padding-right: 1.5em;
     cursor: pointer;
-    @include lg-phone {
+    @include sm-phone {
       width: 17%;
     }
+    @include lg-phone {
+      width: 14%;
+    }
     @include tablet {
-      width: 8%;
+      width: 5%;
     }
     @include sm-desktop {
-      width: 6%;
-    }
-    @include md-desktop {
-      width: 5.5%;
-    }
-    @include lg-desktop {
       width: 4%;
     }
-    @include xl-desktop {
+    @include md-desktop {
+      width: 3.5%;
+    }
+    @include lg-desktop {
       width: 3%;
+    }
+    @include xl-desktop {
+      width: 1.8%;
     }
   }
 }

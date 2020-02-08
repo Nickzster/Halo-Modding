@@ -8,7 +8,7 @@ const LandingPage = () => {
       <section className="welcome">
         <p className="large">Welcome to Halo Modding!</p>
         <p className="small">
-          Your one stop shop to all your halo modding needs!
+          The one stop shop to all your halo modding needs!
         </p>
       </section>
       <div className="info-card-container">

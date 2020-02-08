@@ -25,12 +25,21 @@ const initialState: State = {
 const getData = async (query: string): Promise<Post[] | Error> => {
   console.log(query);
   console.log(`fetching: ${baseURL}/posts${query}`);
-  let data: Promise<Post[] | Error> = (
-    await fetch(baseURL + "/posts" + query, {
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
-  ).json();
-  return data;
+  try {
+    let data: Promise<Post[] | Error> = (
+      await fetch(baseURL + "/posts" + query, {
+        mode: "cors",
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
+    )
+      .json()
+      .catch(err => {
+        throw err;
+      });
+    return data;
+  } catch (err) {
+    return { code: "UNEXPECTED_ERROR", message: "Something has gone wrong!" };
+  }
 };
 
 let effects: StoreEffects = store => {
