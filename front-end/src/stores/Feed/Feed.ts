@@ -26,7 +26,9 @@ const getData = async (query: string): Promise<Post[] | Error> => {
   console.log(query);
   console.log(`fetching: ${baseURL}/posts${query}`);
   let data: Promise<Post[] | Error> = (
-    await fetch(baseURL + "/posts" + query)
+    await fetch(baseURL + "/posts" + query, {
+      headers: { "Access-Control-Allow-Origin": "*" }
+    })
   ).json();
   return data;
 };
