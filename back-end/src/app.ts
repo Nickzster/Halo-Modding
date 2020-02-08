@@ -4,12 +4,7 @@ import { connectDB } from "./config/db";
 import cors from "cors";
 const app: express.Application = express();
 
-var corsOptions = {
-  origin: "https://halomodding.org",
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(router);
 
