@@ -5,7 +5,7 @@ import cors from "cors";
 const app: express.Application = express();
 
 var corsOptions = {
-  origin: "https://api.hmapi.dev",
+  origin: "https://halomodding.org",
   optionsSuccessStatus: 200
 };
 
