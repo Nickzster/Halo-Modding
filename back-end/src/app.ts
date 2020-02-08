@@ -4,7 +4,12 @@ import { connectDB } from "./config/db";
 import cors from "cors";
 const app: express.Application = express();
 
-app.use(cors());
+var corsOptions = {
+  origin: "https://api.hmapi.dev",
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(router);
 
