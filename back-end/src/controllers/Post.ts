@@ -7,14 +7,15 @@ import { Query } from "../types/Queries";
 import { Error } from "../types/Error";
 import debug from "../util/debug";
 
+//extracts an email out of a post
 const stripEmail = (post: Post) => {
   if (post && post.userinfo && post.userinfo.email) post.userinfo.email = "";
   return post;
 };
 
-export const saveNewPost = async (body): Promise<Post> => {
+export const saveNewPost = async (req): Promise<Post> => {
   try {
-    let newPost: Post = await validatePost(body);
+    let newPost: Post = await validatePost(req);
     await newPost.save();
     return stripEmail(newPost);
   } catch (err) {
@@ -22,9 +23,8 @@ export const saveNewPost = async (body): Promise<Post> => {
   }
 };
 
-export const getPostsByQuery = async (
-  reqQueries
-): Promise<Array<Post> | Error> => {
+//Supported queries: Game, Project Type, Username
+export const getPostsByQuery = async (reqQueries): Promise<Post[] | Error> => {
   try {
     let queries: Array<Query> = [];
     for (let queryType in reqQueries) {
