@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Post, Link } from "../../types/Post";
 import { sendData } from "../../utils/SendData";
@@ -21,10 +21,13 @@ const NewPost = () => {
   });
   const [success, updateSuccess] = useState(false);
   const [pending, updatePending] = useState(false);
+  //holds special state
   const [projectmirrors, updateProjectMirrors] = useState(new Array<Link>());
   const [downloadmirrors, updateDownloadMirrors] = useState(new Array<Link>());
   const [images, updateImages] = useState(new Array<Link>());
+  //holds errors that are thrown from back end if posting is unsuccessful
   const [err, updateErrors] = useState({ errors: [] as Array<string> });
+  useEffect(() => window.scrollTo(0, 0), []);
   const submitForm = (e: any) => {
     e.preventDefault();
     console.log("Form was submitted!");
@@ -41,19 +44,23 @@ const NewPost = () => {
     updatePending(true);
     sendData(submission)
       .then(response => {
-        if (
-          response &&
-          response.code &&
-          response.code === "TOXICITY_DETECTED"
-        ) {
-          console.log("TOXICITY DETECTED!");
+        if (response[0] && response[0].code) {
           let newErrors = new Array<string>();
-          newErrors.push(response.message);
+          response.map(item => newErrors.push(item.message));
           updateErrors({ errors: newErrors });
           updatePending(false);
           return;
+        } else if (
+          response &&
+          response.userinfo &&
+          response.userinfo.email === ""
+        ) {
+          updateSuccess(true);
         }
-        updateSuccess(true);
+        updateErrors({
+          errors: ["Something went wrong! Please check back later."]
+        });
+        updatePending(false);
       })
       .catch(err => {
         console.log(err);

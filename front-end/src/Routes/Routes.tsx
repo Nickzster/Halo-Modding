@@ -6,6 +6,7 @@ import NotFound from "../Screens/NotFound";
 import LoadFeed from "./components/LoadFeed";
 import LoadCreateNewPost from "./components/LoadCreateNewPost";
 import Explore from "../Screens/Explore";
+import LoadIndividualPost from "./components/LoadIndividualPost";
 
 const Routes = () => {
   return (
@@ -14,6 +15,7 @@ const Routes = () => {
         <Route exact path="/feed" component={LoadFeed} />
         <Route exact path="/create-new-post" component={LoadCreateNewPost} />
         <Route exact path="/explore" component={Explore} />
+        <Route exact path="/id/:id" component={LoadIndividualPost} />
         <Route component={NotFound} />
       </Switch>
     </React.Fragment>

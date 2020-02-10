@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FeedCard from "../../components/MyFeed/FeedCard/FeedCard";
 import { Link } from "react-router-dom";
-import { Query } from "../../types/Query";
-import { createQueryFromProps } from "../../utils/CreateQuery";
-import SamplePosts from "../../SampleData/SamplePosts.json";
+import NoPostsFound from "../../components/NoPostsFound";
 //rxjs
 import { fromEvent } from "rxjs";
 import Feed from "../../stores/Feed";
@@ -29,6 +27,7 @@ interface Props {
   location: any;
   match: any;
 }
+
 //TODO: Refactor duplicate explore button
 
 const MyFeed: React.FC<Props> = props => {
@@ -60,20 +59,7 @@ const MyFeed: React.FC<Props> = props => {
       </div>
       {store.get("reachedBottom") ? (
         store.get("posts").length === 0 ? (
-          <div style={{ height: "75vh", textAlign: "center" }}>
-            <h1>No posts found with the given critera.</h1>
-            <Link
-              style={{
-                color: "white",
-                textDecoration: "none",
-                padding: "1em",
-                background: "#4981c2"
-              }}
-              to="/explore"
-            >
-              Go back to Explore
-            </Link>
-          </div>
+          <NoPostsFound message="No posts found with the given criteria." />
         ) : (
           <React.Fragment>
             <h2>Looks like you've reached the bottom!</h2>

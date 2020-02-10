@@ -1,8 +1,8 @@
 import { Effects, createConnectedStore } from "undux";
 import { Post } from "../../types/Post";
 import { Error } from "../../types/Error";
-import { baseURL } from "../../utils/url";
 // import
+import { getDataFromAPI as fetchData } from "../../utils/GetData";
 
 // Declare your store's types.
 interface State {
@@ -11,6 +11,7 @@ interface State {
   reachedBottom: boolean;
   page: number;
   queries: string;
+  error: boolean;
 }
 
 // Declare your store's initial state.
@@ -19,19 +20,13 @@ const initialState: State = {
   posts: [],
   reachedBottom: false,
   page: 0,
-  queries: ""
+  queries: "",
+  error: false
 };
 
 const getData = async (query: string): Promise<Post[] | Error> => {
-  console.log(query);
-  console.log(`fetching: ${baseURL}/posts${query}`);
   try {
-    let data: Promise<Post[] | Error> = (
-      await fetch(baseURL + "/posts" + query, {
-        mode: "cors",
-        headers: { "Access-Control-Allow-Origin": "*" }
-      })
-    )
+    let data: Promise<Post[] | Error> = (await fetchData("/posts" + query))
       .json()
       .catch(err => {
         throw err;

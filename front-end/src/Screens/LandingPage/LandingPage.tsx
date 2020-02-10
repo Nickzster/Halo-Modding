@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import "../../scss/screens/landingpage.scss";
 
 const LandingPage = () => {
+  useEffect(() => window.scrollTo(0, 0), []);
   return (
     <div className="landingpage-container">
       <section className="welcome">

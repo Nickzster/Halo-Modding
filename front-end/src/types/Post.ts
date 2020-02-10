@@ -20,4 +20,5 @@ export interface Post {
   projectmirrors: Array<Link>;
   projectstate?: string;
   isverified?: boolean;
+  _id?: string;
 }

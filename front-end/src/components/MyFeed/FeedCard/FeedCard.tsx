@@ -20,14 +20,19 @@ const FeedCard: React.FunctionComponent<Props> = props => {
     projectmirrors,
     images,
     description,
-    downloadmirrors
+    downloadmirrors,
+    _id
   } = props.Data;
 
   const { username } = userinfo;
-
+  console.log(props.Data);
   return (
     <div className="card">
-      <DisplayPartialProfile username={projecttitle} isVerified={false} />
+      <DisplayPartialProfile
+        username={projecttitle}
+        isVerified={false}
+        id={_id}
+      />
       <ImageCarousel images={images} />
       <section className="card-information">
         <h3>{`Created by ${username}`}</h3>

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Global from "../../stores/Global";
 import { NavItem } from "./NavItem";
 import "../../scss/components/navbar.scss";
 
 const Navbar: React.FunctionComponent = () => {
   const [sidePanel, toggleSidePanel] = useState(false);
+  const globalStore = Global.useStore();
   return (
     <nav className="navbar-container">
       <Link to="/">
@@ -48,6 +50,15 @@ const Navbar: React.FunctionComponent = () => {
             <img src={require("../../images/upload.svg")} />
             <p>Upload Project</p>
           </Link>
+          <div
+            className="list-item"
+            onClick={() => {
+              toggleSidePanel(!sidePanel);
+            }}
+          >
+            <img src={require("../../images/account.svg")} />
+            <p>{globalStore.get("user")}</p>
+          </div>
         </div>
       )}
     </nav>

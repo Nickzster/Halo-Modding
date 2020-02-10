@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
+import { baseURL } from "./url";
 
 // interface Tutorial {
 //   title: string;
@@ -8,5 +9,9 @@ import { Observable } from 'rxjs';
 // }
 
 // const getMaps: Observable = new Observable();
-
-export {};
+export const getDataFromAPI = async (url: string) => {
+  return await fetch(`${baseURL}${url}`, {
+    mode: "cors",
+    headers: { "Access-Control-Allow-Origin": "*" }
+  });
+};
