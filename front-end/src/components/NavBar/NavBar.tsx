@@ -50,7 +50,7 @@ const Navbar: React.FunctionComponent = () => {
             <img src={require("../../images/upload.svg")} />
             <p>Upload Project</p>
           </Link>
-          <div
+          {/* <div
             className="list-item"
             onClick={() => {
               toggleSidePanel(!sidePanel);
@@ -58,7 +58,7 @@ const Navbar: React.FunctionComponent = () => {
           >
             <img src={require("../../images/account.svg")} />
             <p>{globalStore.get("user")}</p>
-          </div>
+          </div> */}
         </div>
       )}
     </nav>
