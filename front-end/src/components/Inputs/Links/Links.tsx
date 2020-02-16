@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "../../types/Post";
-import StateArray from "../../utils/classes/StateArray";
+import { Link } from "../../../types/Post";
+import StateArray from "../../../utils/classes/StateArray";
+import Selector from "../Selector";
+import TextInput from "../TextInput";
 
 interface Props {
   title: string;
@@ -29,13 +31,13 @@ const Links: React.FC<Props> = props => {
         );
       })}
       <section className="links">
-        <input
+        <TextInput
           type="text"
           placeholder="Website Name"
           name="source"
           value={form.source}
-          onChange={e => changeForm(e)}
-        ></input>
+          onChange={changeForm}
+        ></TextInput>
         <input
           type="text"
           placeholder="Website URL"

@@ -1,4 +1,5 @@
 import React from "react";
+import TextInput from "../TextInput";
 
 interface Field {
   label: string;
@@ -6,6 +7,7 @@ interface Field {
   state: any;
   input: string;
   placeholder?: string;
+  required: boolean;
   cb: Function;
 }
 
@@ -21,29 +23,24 @@ const InputContainer: React.FC<Props> = props => {
         return (
           <section key={formItem.name} className="text-input-container">
             <label>{formItem.label}</label>
-            {formItem.input === "text" ? (
-              <input
-                required
-                type={formItem.input}
-                name={formItem.name}
-                value={formItem.state}
-                placeholder={
-                  formItem && formItem.placeholder
-                    ? formItem.placeholder
-                    : formItem.label
-                }
-                onChange={e => formItem.cb(e)}
-              ></input>
-            ) : (
-              <textarea
-                style={{ color: "black", padding: "0.5em" }}
-                required
-                placeholder={formItem.label}
-                name={formItem.name}
-                value={formItem.state}
-                onChange={e => formItem.cb(e)}
-              ></textarea>
-            )}
+            <TextInput
+              required={true}
+              type={
+                formItem.input === "text"
+                  ? "text"
+                  : formItem.input === "textarea"
+                  ? "textarea"
+                  : "text"
+              }
+              name={formItem.name}
+              value={formItem.state}
+              placeholder={
+                formItem && formItem.placeholder
+                  ? formItem.placeholder
+                  : formItem.label
+              }
+              onChange={formItem.cb}
+            ></TextInput>
           </section>
         );
       })}

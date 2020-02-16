@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FeedCard from "../../components/MyFeed/FeedCard/FeedCard";
+import FeedCard from "../../components/Feed/FeedCard/FeedCard";
 import { Link } from "react-router-dom";
 import NoPostsFound from "../../components/NoPostsFound";
 //rxjs
@@ -9,6 +9,7 @@ import { debounceTime } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { match } from "react-router";
 import "../../scss/screens/feed.scss";
+import Button from "../../components/Inputs/Button";
 
 const scroll: Observable<Event> = fromEvent(document, "scroll").pipe(
   debounceTime(200)
@@ -36,9 +37,12 @@ const MyFeed: React.FC<Props> = props => {
   const [scrollEventIsLoaded, loadScrollEvent] = useState(false);
   useEffect(() => {
     console.log(location);
+    //set up queries
     if (location && location.search && location.search !== "")
       store.set("queries")(location.search);
+    //inital fetch
     if (store.get("posts").length === 0) store.set("loading")(true);
+    //subscribe to scroll event
     if (!scrollEventIsLoaded) {
       var subscriber = scroll.subscribe(() => {
         if (needMoreData()) store.set("loading")(true);
@@ -46,6 +50,7 @@ const MyFeed: React.FC<Props> = props => {
       console.log("Scroll Event is loaded!");
       loadScrollEvent(true);
     }
+    //unsubscribe from scroll event on cleanup
     return () => {
       subscriber.unsubscribe();
     };
@@ -63,17 +68,7 @@ const MyFeed: React.FC<Props> = props => {
         ) : (
           <React.Fragment>
             <h2>Looks like you've reached the bottom!</h2>
-            <Link
-              style={{
-                color: "white",
-                textDecoration: "none",
-                padding: "1em",
-                background: "#4981c2"
-              }}
-              to="/explore"
-            >
-              Go back to Explore
-            </Link>
+            <Button url="/explore" title="Go back to Explore" />
           </React.Fragment>
         )
       ) : null}

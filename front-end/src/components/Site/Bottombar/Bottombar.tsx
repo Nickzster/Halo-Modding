@@ -1,5 +1,5 @@
 import React from "react";
-import "../../scss/components/footer.scss";
+import "../../../scss/components/footer.scss";
 
 const Bottombar = () => {
   return (

@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Post, Link } from "../../types/Post";
 import { sendData } from "../../utils/SendData";
-import InputContainer from "../../components/InputContainer";
-import Selector from "../../components/Selector";
+import InputContainer from "../../components/Inputs/InputContainer";
+import Selector from "../../components/Inputs/Selector";
 import ProjectTypes from "../../data/ProjectTypes.json";
 import Games from "../../data/Games.json";
-import StateArray from "../../utils/classes/StateArray";
-import Links from "../../components/Links";
+
+import Links from "../../components/Inputs/Links";
 import "../../scss/screens/createpost.scss";
 
 const NewPost = () => {
+  //basic form state
   const [form, updateForm] = useState({
     username: "",
     email: "",
@@ -68,14 +69,8 @@ const NewPost = () => {
       });
   };
   const changeField = (e: any) => {
-    console.log(`Updating: ${e.target.name} to ${e.target.value}`);
     updateForm({ ...form, [e.target.name]: e.target.value });
   };
-  //TODO: Figure out how to correctly modify the array state
-  // const modifyItemState = (e:any) => {
-  //   console.log(`Updating a state array!`);
-  //   updateForm({...form[e.target.name], [...form[e.target.name], form[e.target.name]]})
-  // }
   if (success) return <Redirect to="/feed" />;
   if (pending)
     return (
@@ -111,14 +106,16 @@ const NewPost = () => {
                 input: "text",
                 name: "username",
                 state: form.username,
-                cb: changeField
+                cb: changeField,
+                required: true
               },
               {
                 label: "Email",
                 input: "text",
                 name: "email",
                 state: form.email,
-                cb: changeField
+                cb: changeField,
+                required: true
               }
             ]}
           />
@@ -141,14 +138,16 @@ const NewPost = () => {
                 input: "text",
                 name: "projecttitle",
                 state: form.projecttitle,
-                cb: changeField
+                cb: changeField,
+                required: true
               },
               {
                 label: "Project Description",
                 input: "textarea",
                 name: "projectdescription",
                 state: form.projectdescription,
-                cb: changeField
+                cb: changeField,
+                required: true
               }
             ]}
           />

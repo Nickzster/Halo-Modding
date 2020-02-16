@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Bottombar from "./components/Bottombar";
+import Navbar from "./components/Site/Navbar/Navbar";
+import Bottombar from "./components/Site/Bottombar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Global from "./stores/Global";
 // import "./styles/global.css";

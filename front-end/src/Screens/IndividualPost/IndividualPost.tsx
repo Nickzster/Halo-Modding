@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Post } from "../../types/Post";
 import { Error } from "../../types/Error";
 import Feed from "../../stores/Feed";
-import FeedCard from "../../components/MyFeed/FeedCard/FeedCard";
+import FeedCard from "../../components/Feed/FeedCard/FeedCard";
 import { getDataFromAPI as fetchData } from "../../utils/GetData";
 import NoPostsFound from "../../components/NoPostsFound";
 import "../../scss/screens/feed.scss";

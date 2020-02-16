@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import InputContainer from "../../components/InputContainer";
-import Selector from "../../components/Selector";
+import InputContainer from "../../components/Inputs/InputContainer";
+import Selector from "../../components/Inputs/Selector";
 import Games from "../../data/Games.json";
 import ProjectTypes from "../../data/ProjectTypes.json";
 import { Redirect, Link } from "react-router-dom";
@@ -45,7 +45,8 @@ const Explore = () => {
                 input: "text",
                 name: "username",
                 state: queries.username,
-                cb: onChange
+                cb: onChange,
+                required: false
               }
             ]}
           />{" "}
