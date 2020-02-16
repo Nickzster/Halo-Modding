@@ -4,33 +4,26 @@ import { Post } from "../../types/Post";
 import { saveNewPost } from "../../controllers/Post";
 import debug from "../../util/debug";
 import { generateError } from "../../util/generateError";
+import { validatePost } from "../../middleware/validators/ValidatePost";
 
 const router: express.Router = express.Router();
 
-router.post("/add", async (req: express.Request, res: express.Response) => {
-  try {
-    debug("REQUESTING TO ADD DATA: ", req.body);
-    let newPost: Post = await saveNewPost(req.body);
-    return res.send(newPost);
-  } catch (err) {
-    debug("### error thrown in route /add ###");
-    console.log(
-      "############### ERROR ###############\n",
-      err,
-      "\n############### ERROR ###############\n"
-    );
-    if (err && err.length > 0) {
-      debug("...and it is an array of errors");
-      return res.status(400).json(err);
-    } else if (err && err.code && err.message) {
-      debug("...and it is a single error.");
-      return res.status(400).json([err]);
+router.post(
+  "/add",
+  [validatePost],
+  async (req: express.Request, res: express.Response) => {
+    try {
+      debug("Adding Data for Project: ", req.body.projecttitle);
+      let newPost: Post = await saveNewPost(req);
+      return res.send(newPost);
+    } catch (err) {
+      debug("ERROR OUTPUT: ", err);
+      debug("### Pushing Generic Error ###");
+      let error: Error[] = [];
+      error.push(generateError("SERVER_ERROR"));
+      return res.status(400).json(error);
     }
-    debug("...and it is an unknown error.");
-    let error: Error[] = [];
-    error.push(generateError("SERVER_ERROR"));
-    return res.status(400).json(error);
   }
-});
+);
 
 export { router };

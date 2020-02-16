@@ -2,7 +2,6 @@ const ITEMS_PER_FETCH = 5;
 import Posts from "../models/Posts";
 import { Post } from "../types/Post";
 import { generateError } from "../util/generateError";
-import validatePost from "../middleware/validators/ValidatePost";
 import { Query } from "../types/Queries";
 import { Error } from "../types/Error";
 import debug from "../util/debug";
@@ -15,7 +14,26 @@ const stripEmail = (post: Post) => {
 
 export const saveNewPost = async (req): Promise<Post> => {
   try {
-    let newPost: Post = await validatePost(req);
+    let newPost: Post = new Posts({
+      userinfo: req.body.userinfo,
+      game: req.body.game,
+      projecttype: req.body.projecttype,
+      downloadmirrors:
+        req.body.downloadmirrors === null
+          ? []
+          : req.body.downloadmirrors === undefined
+          ? []
+          : req.body.downloadmirrors,
+      projectmirrors:
+        req.body.projectmirrors === null
+          ? []
+          : req.body.projectmirrors === undefined
+          ? []
+          : req.body.projectmirrors,
+      images: req.body.images,
+      projecttitle: req.body.projecttitle,
+      description: req.body.description
+    });
     await newPost.save();
     return stripEmail(newPost);
   } catch (err) {

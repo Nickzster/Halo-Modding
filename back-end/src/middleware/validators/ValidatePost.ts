@@ -4,6 +4,7 @@ import { generateError } from "../../util/generateError";
 import { isValidGame, isValidProjectType } from "../../util/validNames";
 import Posts from "../../models/Posts";
 import { checkMandatoryFields, checkToxicity } from "./CheckForErrors";
+import debug from "../../util/debug";
 
 /* 
 Validate Post
@@ -11,33 +12,29 @@ Validate Post
 -Need to make sure all typed fields do not have toxicity or spam
 */
 
-const validatePost = async (data): Promise<Post> => {
-  let Errors: Array<Error> = checkMandatoryFields(data);
-  if (Errors.length > 0) throw Errors;
-  //TODO: Validate toxicity for Project Mirrors and Download Links (Both Sources & URLS)
-  let isToxic = await checkToxicity(data);
-  if (isToxic) throw generateError("TOXICITY_DETECTED");
-  let newPost: Post = new Posts({
-    userinfo: data.userinfo,
-    game: isValidGame(data.game),
-    projecttype: isValidProjectType(data.projecttype),
-    downloadmirrors:
-      data.downloadmirrors === null
-        ? []
-        : data.downloadmirrors === undefined
-        ? []
-        : data.downloadmirrors,
-    projectmirrors:
-      data.projectmirrors === null
-        ? []
-        : data.projectmirrors === undefined
-        ? []
-        : data.projectmirrors,
-    images: data.images,
-    projecttitle: data.projecttitle,
-    description: data.description
-  });
-  return newPost;
+export const validatePost = async (req, res, next): Promise<void> => {
+  try {
+    let Errors: Array<Error> = checkMandatoryFields(req.body);
+    if (Errors.length > 0) throw Errors;
+    let isToxic = await checkToxicity(req.body);
+    if (isToxic) throw generateError("TOXICITY_DETECTED");
+    if (!isValidGame(req.body.game)) throw generateError("INVALID_GAME");
+    if (!isValidProjectType(req.body.projecttype))
+      throw generateError("INVALID_PROJECT_TYPE");
+    next();
+  } catch (err) {
+    debug("### ERROR in Middleware ValidatePost ###");
+    if (err && err.length > 0) {
+      debug("...and it is an array of errors");
+      res.status(400).json(err);
+    } else if (err && err.code && err.message) {
+      debug("...and it is a single error.");
+      res.status(400).json([err]);
+    } else {
+      debug("...and it is an unknown error.");
+      let error: Error[] = [];
+      error.push(generateError("SERVER_ERROR"));
+      res.status(400).json(error);
+    }
+  }
 };
-
-export default validatePost;
