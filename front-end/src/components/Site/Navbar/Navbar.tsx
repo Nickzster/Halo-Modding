@@ -6,6 +6,7 @@ import "../../../scss/components/navbar.scss";
 
 const Navbar: React.FunctionComponent = () => {
   const [sidePanel, toggleSidePanel] = useState(false);
+  const [width, setWidth] = useState(0);
   const globalStore = Global.useStore(); //For auth when implemented
   const onClick = () => {
     toggleSidePanel(!sidePanel);
@@ -22,8 +23,11 @@ const Navbar: React.FunctionComponent = () => {
         id="menu"
         src={require("../../../images/menu-24px.svg")}
       />
-      {!sidePanel ? null : (
-        <div className="side-panel">
+      {false ? null : (
+        <div
+          style={{ width: sidePanel === true ? "320px" : "0px" }}
+          className="side-panel"
+        >
           <NavItem
             isLink={false}
             url=""
