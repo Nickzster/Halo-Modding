@@ -1,10 +1,10 @@
-import { Post } from "../../types/Post";
-import { Error } from "../../types/Error";
-import { generateError } from "../../util/generateError";
-import { isValidGame, isValidProjectType } from "../../util/validNames";
-import Posts from "../../models/Posts";
-import { checkMandatoryFields, checkToxicity } from "./CheckForErrors";
-import debug from "../../util/debug";
+import { Post } from "../../../types/Post";
+import { Error } from "../../../types/Error";
+import { generateError } from "../../../util/generateError";
+import { isValidGame, isValidProjectType } from "../../../util/validNames";
+import Posts from "../../../models/Posts";
+import { checkMandatoryFields, checkToxicity } from "../CheckForErrors";
+import debug from "../../../util/debug";
 
 /* 
 Validate Post

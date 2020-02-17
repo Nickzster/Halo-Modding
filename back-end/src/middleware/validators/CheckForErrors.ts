@@ -2,6 +2,7 @@ import { generateError } from "../../util/generateError";
 import { checkForToxicity } from "./Toxicity/toxicity";
 import { Error } from "../../types/Error";
 import { Link } from "../../types/Post";
+import { isValidEmail } from "../../util/check";
 
 //Makes sure that the Username, Email, Game, Project Type, Project Name,
 //Project Description, and images have valid values
@@ -12,7 +13,7 @@ export const checkMandatoryFields = (data: any): Array<Error> => {
     Errors.push(generateError("USER_NAME_IS_NULL"));
   if (
     !(data && data.userinfo && data.userinfo.email) ||
-    data.userinfo.email.search("@") === -1
+    isValidEmail(data.userinfo.email)
   )
     Errors.push(generateError("EMAIL_IS_NULL"));
   if (data && (data.game === null || data.game === undefined))

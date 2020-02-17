@@ -4,7 +4,7 @@ import { Post } from "../../types/Post";
 import { saveNewPost } from "../../controllers/Post";
 import debug from "../../util/debug";
 import { generateError } from "../../util/generateError";
-import { validatePost } from "../../middleware/validators/ValidatePost";
+import { validatePost } from "../../middleware/validators/Posts/ValidatePost";
 
 const router: express.Router = express.Router();
 
