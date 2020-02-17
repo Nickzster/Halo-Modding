@@ -54,7 +54,9 @@ const Explore = () => {
         <br />
         <br />
         <div className="buttons">
-          <Link to={`/feed${queryString}`}>Explore!</Link>
+          <Link to={`/feed${queryString}`} className="link-button">
+            Explore!
+          </Link>
         </div>
       </div>
     </div>

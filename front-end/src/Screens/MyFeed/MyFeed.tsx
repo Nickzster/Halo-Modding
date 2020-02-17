@@ -55,6 +55,14 @@ const MyFeed: React.FC<Props> = props => {
       subscriber.unsubscribe();
     };
   }, []);
+  if (!store.get("reachedBottom") && store.get("posts").length === 0)
+    return (
+      <React.Fragment>
+        <h1 style={{ marginTop: "20em", height: "100vh", textAlign: "center" }}>
+          Loading...
+        </h1>
+      </React.Fragment>
+    );
   return (
     <div className="feed-container">
       <div className="card-container">

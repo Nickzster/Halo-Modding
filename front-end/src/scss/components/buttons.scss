@@ -1,0 +1,63 @@
+@import "../components/util.scss";
+// a.link-button {
+//   cursor: pointer;
+//   text-decoration: none;
+//   position: relative;
+//   color: color(font);
+//   padding: 1em 4em;
+//   font-size: 24px;
+//   font-weight: bold;
+//   background: color(primary-light);
+//   border-radius: 0.2em;
+//   margin-bottom: 1em;
+// }
+a.button {
+  color: color(font);
+  text-decoration: none;
+  padding: 1em;
+  background: color(primary-light);
+}
+
+a.link-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: color(primary-light);
+  z-index: -1;
+  border-radius: 0.2em;
+  transition: 150ms ease-in;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+a.link-button:hover::after {
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: 150ms ease-in;
+  border-radius: 0.2em;
+  color: white;
+  background: color(select);
+}
+
+// .arrow-button::after {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: color(primary);
+//   z-index: -1;
+//   transition: 150ms ease-in;
+//   transform: scale(0);
+//   transform-origin: center;
+// }
+
+// .arrow-button:hover::after {
+//   transform: scale(1);
+//   transition: 150ms ease-in;
+//   background: color(select);
+// }

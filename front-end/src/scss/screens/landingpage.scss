@@ -1,4 +1,5 @@
 @import "../components/util.scss";
+@import "../components/buttons.scss";
 
 .landingpage-container {
   color: color(font);
@@ -48,15 +49,17 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      a {
+      a.link-button {
         text-decoration: none;
         text-align: center;
         color: color(font);
         background: color(primary-light);
+        position: relative;
         padding: 1em;
         margin: 1em;
         border-radius: 0.3em;
         width: 40%;
+        z-index: 1;
         @include md-desktop {
           width: 15%;
         }
