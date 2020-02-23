@@ -1,27 +1,44 @@
 import { Effects, createConnectedStore } from "undux";
 import { Post } from "../../types/Post";
 import { Error } from "../../types/Error";
+import { FetchParameters } from "../../types/FetchParameters";
+import { debounceTime, concat } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { fromEvent } from "rxjs";
 // import
 import { getDataFromAPI as fetchData } from "../../utils/GetData";
+import { buildQueryString } from "../../utils/BuildQueryString";
+
+const scroll: Observable<Event> = fromEvent(document, "scroll").pipe(
+  debounceTime(200)
+);
+
+const needMoreData = () => {
+  console.log("Need more data?");
+  if (
+    window.innerHeight + document.documentElement.scrollTop >=
+    document.documentElement.offsetHeight - 1000
+  )
+    return true;
+  return false;
+};
 
 // Declare your store's types.
 interface State {
-  loading: boolean;
+  fetch: boolean;
+  more: boolean;
   posts: Post[];
-  reachedBottom: boolean;
   page: number;
-  queries: string;
-  error: boolean;
+  query: string;
 }
 
 // Declare your store's initial state.
 const initialState: State = {
-  loading: false,
+  fetch: false,
+  more: true,
   posts: [],
-  reachedBottom: false,
   page: 0,
-  queries: "",
-  error: false
+  query: ""
 };
 
 const getData = async (query: string): Promise<Post[] | Error> => {
@@ -38,28 +55,18 @@ const getData = async (query: string): Promise<Post[] | Error> => {
 };
 
 let effects: StoreEffects = store => {
-  store.on("loading").subscribe(async () => {
-    if (store.get("loading")) {
-      if (store.get("reachedBottom") === false) {
-        let queryString = ``;
-        let currentPage = store.get("page");
-        currentPage++;
-        store.set("page")(currentPage);
-        queryString += store.get("queries");
-        console.log(!!store.get("queries"));
-        if (!!store.get("queries")) queryString += `&page=${store.get("page")}`;
-        else queryString += `?page=${store.get("page")}`;
-        let response: any = await getData(queryString);
-        console.log("RESPONSE", response);
-        if (response && response.code) {
-          console.log("WE ARE AT THE BOTTOM!");
-          store.set("reachedBottom")(true);
-        } else {
-          console.log("APPEND NEW POSTS!");
-          store.set("posts")(store.get("posts").concat(response));
-        }
-      }
-      store.set("loading")(false);
+  store.on("fetch").subscribe(async () => {
+    if (store.get("more")) {
+      console.log("Fetching more posts!");
+      store.set("page")(store.get("page") + 1);
+      let response: any = await getData(
+        buildQueryString(store.get("query"), store.get("page"))
+      );
+      if (response && response.code) {
+        store.set("more")(false);
+      } else store.set("posts")(store.get("posts").concat(response));
+    } else {
+      console.log("Tried to fetch, but there are no more posts to fetch!");
     }
   });
   return store;

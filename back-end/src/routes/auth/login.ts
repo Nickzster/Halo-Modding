@@ -15,7 +15,7 @@ router.get(
       return res.json(token);
     } catch (err) {
       debug(err);
-      res.status(401).json([generateError("INVALID_LOGIN")]);
+      res.status(301).json([generateError("INVALID_LOGIN")]);
     }
   }
 );

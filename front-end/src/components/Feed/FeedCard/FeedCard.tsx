@@ -25,7 +25,6 @@ const FeedCard: React.FunctionComponent<Props> = props => {
   } = props.Data;
 
   const { username } = userinfo;
-  console.log(props.Data);
   return (
     <div className="card">
       <DisplayPartialProfile

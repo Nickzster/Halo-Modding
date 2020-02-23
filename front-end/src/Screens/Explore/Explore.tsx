@@ -13,9 +13,6 @@ const Explore = () => {
     username: ""
   });
 
-  let queryString = `?${queries.game === "" ? "" : `game=${queries.game}`}${
-    queries.projecttype === "" ? "" : `&projecttype=${queries.projecttype}`
-  }${queries.username === "" ? "" : `&username=${queries.username}`}`;
   const onChange = (e: any) => {
     updateQueries({ ...queries, [e.target.name]: e.target.value });
     console.log(`UPDATED QUERIES`, queries);
@@ -54,7 +51,22 @@ const Explore = () => {
         <br />
         <br />
         <div className="buttons">
-          <Link to={`/feed${queryString}`} className="link-button">
+          <Link
+            to={`/feed?${queries.game === "" ? "" : `game=${queries.game}`}${
+              queries.projecttype === ""
+                ? ""
+                : (queries.game = ""
+                    ? `projecttype=${queries.projecttype}`
+                    : `&projecttype=${queries.projecttype}`)
+            }${
+              queries.username === ""
+                ? ""
+                : queries.projecttype === ""
+                ? `username=${queries.username}`
+                : `&username=${queries.username}`
+            }`}
+            className="link-button"
+          >
             Explore!
           </Link>
         </div>

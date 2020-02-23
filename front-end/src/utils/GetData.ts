@@ -10,6 +10,7 @@ import { baseURL } from "./url";
 
 // const getMaps: Observable = new Observable();
 export const getDataFromAPI = async (url: string) => {
+  console.log("Making a request to ", `${baseURL}${url}`);
   return await fetch(`${baseURL}${url}`, {
     mode: "cors",
     headers: { "Access-Control-Allow-Origin": "*" }
