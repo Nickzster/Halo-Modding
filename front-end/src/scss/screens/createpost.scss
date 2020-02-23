@@ -50,29 +50,6 @@ div.form-container {
     background-color: color(primary);
     color: color(font);
   }
-  .buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
-  }
-  button#add {
-    padding: 1em 2em;
-    font-size: 16px;
-    font-weight: bold;
-    color: color(font);
-    background: color(primary-light);
-    margin: 0em 0.5em;
-  }
-  button#remove {
-    padding: 1em 2em;
-    font-size: 16px;
-    font-weight: bold;
-    color: color(font);
-    background: red;
-    margin: 0em 0.5em;
-  }
 }
 
 .submit {

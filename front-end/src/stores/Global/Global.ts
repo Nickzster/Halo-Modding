@@ -5,11 +5,13 @@ import { Effects, createConnectedStore } from "undux";
 // Declare your store's types.
 interface State {
   user: string;
+  isAuthenticated: boolean;
 }
 
 // Declare your store's initial state.
 const initialState: State = {
-  user: "TestUser4242"
+  user: "",
+  isAuthenticated: false
 };
 
 let effects: StoreEffects = store => {

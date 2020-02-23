@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import NoPostsFound from "../../components/NoPostsFound";
 import Feed from "../../stores/Feed";
 import "../../scss/screens/feed.scss";
-import Button from "../../components/Inputs/Button";
+import LinkButton from "../../components/Inputs/LinkButton";
 
 import { scroll, needMoreData } from "../../utils/FeedFetcher";
 
@@ -24,9 +24,10 @@ const MyFeed: React.FC<Props> = props => {
   useEffect(() => {
     //Setup
     window.scrollTo(0, 0);
-    setFetch(true); //inital fetch
+    console.log(location.search);
     if (location && location.search && location.search !== "")
-      setQuery(location.search);
+      setQuery(location.search.slice(1, location.search.length));
+    setFetch(true); //inital fetch
     var scrollSubscriber = scroll.subscribe(() => {
       if (needMoreData()) setFetch(true);
     });
@@ -56,7 +57,7 @@ const MyFeed: React.FC<Props> = props => {
         ) : (
           <React.Fragment>
             <h2>Looks like you've reached the bottom!</h2>
-            <Button url="/explore" title="Go back to Explore" />
+            <LinkButton url="/explore" title="Go back to Explore" />
           </React.Fragment>
         )
       ) : null}

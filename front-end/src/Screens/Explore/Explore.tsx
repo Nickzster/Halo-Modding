@@ -3,6 +3,7 @@ import InputContainer from "../../components/Inputs/InputContainer";
 import Selector from "../../components/Inputs/Selector";
 import Games from "../../data/Games.json";
 import ProjectTypes from "../../data/ProjectTypes.json";
+import { buildQueryString } from "../../utils/BuildQueryString";
 import { Redirect, Link } from "react-router-dom";
 import "../../scss/screens/explore.scss";
 
@@ -24,14 +25,18 @@ const Explore = () => {
         <Selector
           title="Select Game:"
           select={{ name: "game", cb: onChange }}
-          options={[{ value: "", display: "--ANY GAME--" }].concat(Games)}
+          options={[{ value: "", query: "", display: "--ANY GAME--" }].concat(
+            Games
+          )}
+          useQuery={true}
         />
         <Selector
           title="Select Project Type:"
           select={{ name: "projecttype", cb: onChange }}
-          options={[{ value: "", display: "--ANY PROJECT TYPE--" }].concat(
-            ProjectTypes
-          )}
+          options={[
+            { value: "", query: "", display: "--ANY PROJECT TYPE--" }
+          ].concat(ProjectTypes)}
+          useQuery={true}
         />
         <div className="text-input-container">
           <InputContainer
@@ -52,19 +57,11 @@ const Explore = () => {
         <br />
         <div className="buttons">
           <Link
-            to={`/feed?${queries.game === "" ? "" : `game=${queries.game}`}${
-              queries.projecttype === ""
-                ? ""
-                : (queries.game = ""
-                    ? `projecttype=${queries.projecttype}`
-                    : `&projecttype=${queries.projecttype}`)
-            }${
-              queries.username === ""
-                ? ""
-                : queries.projecttype === ""
-                ? `username=${queries.username}`
-                : `&username=${queries.username}`
-            }`}
+            to={`/feed${buildQueryString(
+              queries.game,
+              queries.projecttype,
+              !queries.username ? "" : "username=".concat(queries.username)
+            )}`}
             className="link-button"
           >
             Explore!

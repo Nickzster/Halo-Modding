@@ -4,6 +4,7 @@ import Option from "./Option";
 interface Select {
   value: string;
   display: string;
+  query: string;
 }
 
 interface Props {
@@ -13,10 +14,11 @@ interface Props {
     cb: (e: any) => void;
   };
   options: Array<Select>;
+  useQuery?: boolean;
 }
 
 const Selector: React.FC<Props> = props => {
-  const { select, options, title } = props;
+  const { select, options, title, useQuery } = props;
   return (
     <div className="dropdown-container">
       <p>{title}</p>
@@ -26,7 +28,13 @@ const Selector: React.FC<Props> = props => {
         onChange={e => select.cb(e)}
       >
         {options.map(o => {
-          return <Option key={o.value} value={o.value} display={o.display} />;
+          return (
+            <Option
+              key={o.value}
+              value={!!useQuery ? o.query : o.value}
+              display={o.display}
+            />
+          );
         })}
       </select>
     </div>

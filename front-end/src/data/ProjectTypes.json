@@ -1,62 +1,77 @@
 [
   {
     "display": "Custom Multiplayer",
-    "value": "multiplayer"
+    "value": "multiplayer",
+    "query": "projecttype=multiplayer"
   },
   {
     "display": "Modded Multiplayer",
-    "value": "modded-mp"
+    "value": "modded-mp",
+    "query": "projecttype=modded-mp"
   },
   {
     "display": "Custom Single Player",
-    "value": "single-player"
+    "value": "single-player",
+    "query": "projecttype=single-player"
   },
   {
     "display": "Modded Single Player",
-    "value": "modded-sp"
+    "value": "modded-sp",
+    "query": "projecttype=modded-sp"
   },
   {
     "display": "Custom Firefight",
-    "value": "custom-firefight"
+    "value": "custom-firefight",
+    "query": "projecttype=custom-firefight"
   },
   {
     "display": "Modded Firefight",
-    "value": "modded-firefight"
+    "value": "modded-firefight",
+    "query": "projecttype=modded-firefight"
   },
   {
     "display": "Mappack",
-    "value": "mappack"
+    "value": "mappack",
+    "query": "projecttype=mappack"
   },
   {
     "display": "GameType",
-    "value": "gametype"
+    "value": "gametype",
+    "query": "projecttype=gametype"
   },
   {
     "display": "Role Playing",
-    "value": "rp"
+    "value": "rp",
+    "query": "projecttype=rp"
   },
   {
     "display": "Utility",
-    "value": "utility"
+    "value": "utility",
+    "query": "projecttype=utility"
   },
   {
     "display": "Vehicle Asset",
-    "value": "vehicle-asset"
+    "value": "vehicle-asset",
+    "query": "projecttype=vehicle-asset"
   },
   {
     "display": "Weapon Asset",
-    "value": "weapon-asset"
+    "value": "weapon-asset",
+    "query": "projecttype=weapon-asset"
   },
   {
     "display": "Character Asset",
-    "value": "character-asset"
+    "value": "character-asset",
+    "query": "projecttype=character-asset"
   },
   {
     "display": "Misc. Asset",
-    "value": "misc-asset"
+    "value": "misc-asset",
+    "query": "projecttype=misc-asset"
   },
   {
     "display": "Video",
-    "value": "video"
+    "value": "video",
+    "query": "projecttype=video"
   }
 ]

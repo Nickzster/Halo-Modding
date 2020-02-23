@@ -59,9 +59,21 @@ let effects: StoreEffects = store => {
     if (store.get("more")) {
       console.log("Fetching more posts!");
       store.set("page")(store.get("page") + 1);
-      let response: any = await getData(
-        buildQueryString(store.get("query"), store.get("page"))
+      console.log(store.get("query"));
+      console.log(
+        buildQueryString(
+          store.get("query"),
+          "page=".concat(store.get("page").toString())
+        )
       );
+      let response: any = await getData(
+        buildQueryString(
+          "",
+          store.get("query"),
+          "page=".concat(store.get("page").toString())
+        )
+      );
+      if (response && response.length < 5) store.set("more")(false);
       if (response && response.code) {
         store.set("more")(false);
       } else store.set("posts")(store.get("posts").concat(response));

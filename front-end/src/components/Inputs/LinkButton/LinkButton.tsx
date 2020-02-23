@@ -7,7 +7,7 @@ interface Props {
   url: string;
 }
 
-const Button: React.FC<Props> = props => {
+const LinkButton: React.FC<Props> = props => {
   const { title, url } = props;
   return (
     <React.Fragment>
@@ -18,4 +18,4 @@ const Button: React.FC<Props> = props => {
   );
 };
 
-export default Button;
+export default LinkButton;

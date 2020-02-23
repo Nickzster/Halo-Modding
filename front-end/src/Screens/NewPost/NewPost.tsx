@@ -9,6 +9,7 @@ import Games from "../../data/Games.json";
 
 import Links from "../../components/Inputs/Links";
 import "../../scss/screens/createpost.scss";
+import ActionButton from "../../components/Inputs/ActionButton";
 
 const NewPost = () => {
   //basic form state
@@ -122,14 +123,16 @@ const NewPost = () => {
           <Selector
             title="What game does your project belong to?"
             select={{ name: "game", cb: changeField }}
-            options={[{ value: "", display: "--SELECT GAME---" }].concat(Games)}
+            options={[
+              { value: "", query: "", display: "--SELECT GAME---" }
+            ].concat(Games)}
           />
           <Selector
             title="What category does your project belong to?"
             select={{ name: "projecttype", cb: changeField }}
-            options={[{ value: "", display: "--SELECT PROJECT TYPE--" }].concat(
-              ProjectTypes
-            )}
+            options={[
+              { value: "", query: "", display: "--SELECT PROJECT TYPE--" }
+            ].concat(ProjectTypes)}
           />
           <InputContainer
             form={[
@@ -196,13 +199,11 @@ const NewPost = () => {
             }}
           />
           <section className="submit">
-            <button
-              style={{ marginBottom: "3em" }}
+            <ActionButton
               type="submit"
               disabled={pending}
-            >
-              Create New Post
-            </button>
+              title="Create New Post"
+            />
           </section>
         </form>
       </div>

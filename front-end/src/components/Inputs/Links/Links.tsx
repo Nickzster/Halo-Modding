@@ -3,6 +3,7 @@ import { Link } from "../../../types/Post";
 import StateArray from "../../../utils/classes/StateArray";
 import Selector from "../Selector";
 import TextInput from "../TextInput";
+import ActionButton from "../../Inputs/ActionButton";
 
 interface Props {
   title: string;
@@ -46,102 +47,26 @@ const Links: React.FC<Props> = props => {
           onChange={e => changeForm(e)}
         ></input>
       </section>
-      <section className="buttons">
-        <button
+      <section className="action-buttons">
+        <ActionButton
           id="add"
-          onClick={e => {
+          cb={(e: any) => {
             e.preventDefault();
-            console.log("Adding something!!");
             setstate([{ source: form.source, url: form.url }]);
           }}
-        >
-          Add
-        </button>
-        <button
+          title="Add"
+        />
+        <ActionButton
           id="remove"
-          onClick={e => {
+          cb={(e: any) => {
             e.preventDefault();
             removestate();
           }}
-        >
-          Remove
-        </button>
+          title="Remove"
+        />
       </section>
     </section>
   );
 };
 
 export default Links;
-
-/* <div>
-          <p className='text-font-color text-center text-xl'>
-            Project still WIP? Where will you be updating it at?
-          </p>
-          <input
-            className='background-black p-1 rounded ml-1 mr-1'
-            type='text'
-            placeholder='Source'
-            name='projectmirrorSource'
-            value={form.projectmirrorSource}
-            onChange={e => changeField(e)}
-          ></input>
-          <input
-            className='background-black p-1 rounded ml-1 mr-1'
-            type='text'
-            placeholder='URL'
-            name='projectmirrorURL'
-            value={form.projectmirrorURL}
-            onChange={e => changeField(e)}
-          ></input>
-          <button className='bg-blue-700 text-font-color rounded p-1'>
-            Add More
-          </button> 
-        </div>
-        <br />
-        <br />
-        <div>
-          <p className='text-font-color text-center text-xl'>
-            Project ready for play? Insert some download links!
-          </p>
-          <input
-            className='background-black p-1 rounded ml-1 mr-1'
-            type='text'
-            placeholder='Source'
-            name='downloadmirrorSource'
-            value={form.downloadmirrorSource}
-            onChange={e => changeField(e)}
-          ></input>
-          <input
-            className='background-black p-1 rounded ml-1 mr-1'
-            type='text'
-            placeholder='URL'
-            name='downloadmirrorURL'
-            value={form.downloadmirrorURL}
-            onChange={e => changeField(e)}
-          ></input> } */
-
-//   <div>
-//   <p className='text-font-color text-center text-xl'>Images</p>
-//   <input
-//     required
-//     className='background-black p-1 rounded ml-1 mr-1'
-//     name='images'
-//     value={form.images}
-//     type='text'
-//     placeholder='URL'
-//     onChange={e => changeField(e)}
-//   ></input>
-//   {/* <button className='bg-blue-700 text-font-color rounded p-1 m-1'>
-//     Add Images
-//   </button>
-//   <br />
-//   <input
-//     className='background-black p-1 rounded ml-1 mr-1'
-//     type='text'
-//     placeholder='URL'
-//   ></input>
-//   <button className='bg-red-700 text-font-color rounded p-1 m-1'>
-//     Remove
-//   </button>
-//   <br /> */}
-// </div>

@@ -7,6 +7,7 @@ import LoadFeed from "./components/LoadFeed";
 import LoadCreateNewPost from "./components/LoadCreateNewPost";
 import Explore from "../Screens/Explore";
 import LoadIndividualPost from "./components/LoadIndividualPost";
+import PrivateRoute from "./components/PrivateRoute";
 
 const Routes = () => {
   return (

@@ -26,48 +26,5 @@ div.explore-page {
     a {
       text-align: center;
     }
-    a.link-button {
-      cursor: pointer;
-      text-decoration: none;
-      position: relative;
-      color: color(font);
-      padding: 1em 4em;
-      font-size: 24px;
-      font-weight: bold;
-      background: color(primary-light);
-      border-radius: 0.2em;
-      margin-bottom: 1em;
-      z-index: 1;
-    }
-    // a.link-button::after {
-    //   content: "";
-    //   border-radius: 0.2em;
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   height: 100%;
-    //   background: color(primary-light);
-    //   z-index: -1;
-    //   transition: 200ms ease-in;
-    //   transform: scaleX(0);
-    //   transform-origin: left;
-    // }
-
-    // a.link-button:hover::after {
-    //   transform: scaleX(1);
-    //   border-radius: 0.2em;
-    //   transform-origin: right;
-    //   transition: 200ms ease-in;
-    //   color: white;
-    //   background: color(select);
-    // }
-
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
   }
 }

@@ -1,18 +1,22 @@
 [
   {
     "display": "Halo Custom Edition",
-    "value": "halo-custom-edition"
+    "value": "halo-custom-edition",
+    "query": "game=halo-custom-edition"
   },
   {
     "display": "Halo 2 Vista",
-    "value": "halo-2-vista"
+    "value": "halo-2-vista",
+    "query": "game=halo-2-vista"
   },
   {
     "display": "Halo Combat Evolved",
-    "value": "halo-ce"
+    "value": "halo-ce",
+    "query": "game=halo-ce"
   },
   {
     "display": "Master Chief Collection",
-    "value": "master-chief-collection"
+    "value": "master-chief-collection",
+    "query": "game=master-chief-collection"
   }
 ]
