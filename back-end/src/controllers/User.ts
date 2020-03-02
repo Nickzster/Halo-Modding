@@ -1,7 +1,7 @@
 import User from "../models/Users";
 import { encryptPassword, comparePasswords } from "../util/password";
 import { generateAvatar } from "../util/generateAvatar";
-import { generateJWT } from "../util/generateJWT";
+import { generateJWT } from "../util/jwt";
 import { generateError } from "../util/generateError";
 
 export const saveNewUser = async userInfo => {

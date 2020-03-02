@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { jwtSecret } from "../config/imports";
+import { User } from "../types/User";
 
 export const generateJWT = async (username: string): Promise<string> => {
   const generateJwt = new Promise<string>((resolve, reject) => {
@@ -15,3 +16,5 @@ export const generateJWT = async (username: string): Promise<string> => {
   });
   return await generateJwt;
 };
+
+export const getUserFromToken = async (token: string): Promise<User> => {};

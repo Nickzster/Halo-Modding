@@ -4,9 +4,9 @@ import { generateError } from "../../util/generateError";
 import debug from "../../util/debug";
 
 export const auth = (req, res, next) => {
-  const token = req.header("x-halo-auth-token");
-  if (!token) throw "# # # Token is undefined # # #";
+  const token = req.header("x-halo-modding-auth-token");
   try {
+    if (!token) throw "UNDEFINED TOKEN";
     const payload = jwt.verify(token, jwtSecret());
     req.user = payload.token;
     next();
