@@ -17,4 +17,6 @@ export const generateJWT = async (username: string): Promise<string> => {
   return await generateJwt;
 };
 
-export const getUserFromToken = async (token: string): Promise<User> => {};
+export const getUsernameFromToken = async (token: string): Promise<string> => {
+  return jwt.verify(token, jwtSecret());
+};
