@@ -19,7 +19,8 @@
     "rxjs": "^6.5.4",
     "tailwindcss": "^1.1.4",
     "typescript": "3.7.2",
-    "undux": "^5.1.1"
+    "undux": "^5.1.1",
+    "websync": "^0.0.14"
   },
   "scripts": {
     "build:style": "tailwind build src/styles/build.css -o src/styles/global.css",
