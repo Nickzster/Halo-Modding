@@ -1,6 +1,6 @@
 # Halo Modding V1 Repository
 
-This is the repository used to build the current iteration of (Halo Modding)[https://halomodding.org]
+This is the repository used to build the current iteration of [https://halomodding.org](Halo Modding)
 
 This project has a lot of hours put in, and it works fantastically. However, this implementation makes a few mistakes that I hope to correct in a newer version.
 
