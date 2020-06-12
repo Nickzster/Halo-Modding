@@ -5,15 +5,15 @@ import "../../scss/screens/landingpage.scss";
 const LandingPage = () => {
   useEffect(() => window.scrollTo(0, 0), []);
   return (
-    <div className="landingpage-container">
-      <section className="welcome">
-        <p className="large">Welcome to Halo Modding!</p>
-        <p className="small">
+    <div className='landingpage-container'>
+      <section className='welcome'>
+        <p className='large'>Welcome to Halo Modding!</p>
+        <p className='small'>
           The one stop shop to all your halo modding needs!
         </p>
       </section>
-      <div className="info-card-container">
-        <div className="info-card">
+      <div className='info-card-container'>
+        <div className='info-card'>
           <h3>What is Halo Modding?</h3>
           <p>
             Halo Modding is a web application that allows any halo modder, from
@@ -21,7 +21,7 @@ const LandingPage = () => {
             community.
           </p>
         </div>
-        <div className="info-card">
+        <div className='info-card'>
           <h3>How do I start sharing my projects?</h3>
           <p>You will need:</p>
           <ul>
@@ -50,7 +50,7 @@ const LandingPage = () => {
           </ul>
           <p>
             And that's it! All you need to do is{" "}
-            <Link to="/create-new-post">
+            <Link to='/create-new-post'>
               {" "}
               follow the simple form on the app{" "}
             </Link>{" "}
@@ -58,26 +58,24 @@ const LandingPage = () => {
             project!
           </p>
         </div>
-        <div className="info-card">
+        <div className='info-card'>
           <h3>
-            Can't I just use apps like HaloMaps, HaloCE3, OpenCarnage, or
-            Discord to release my projects?
+            Can't I just use other exsiting websites and services to release my
+            projects?
           </h3>
           <p>
             While these services are good enough, they have their downsides. For
-            starters, HaloMaps hasn't had a single upload in over 4 years. On
-            top of that, it is not secure, and the forum model has a very clunky
-            UX on mobile. HaloCE3 solves the forum problem, but it has not seen
-            any uploads since September 2019! Another thing to mention is that
-            both HaloMaps and HaloCE3 focus on Halo Custom Edition content only.
-            OpenCarnage is a very nice forum, but forums generally have poor
-            mobile UX, and there are so many nested forums that it makes it
-            difficult to find what the user is looking for. Finally, Discord is
-            an excellent service, but it has an issue too: servers! You have to
-            be in one server to get updates from one project pertaining to one
-            game, and you have to be involved in a different server to get
-            updates from another project... 10 different halo servers later, and
-            it can be a mess! <br />
+            starters, some of these services haven't seen an upload in several
+            months or years: this is due to the centralized model that the web
+            master must approve all content before posting it to the website.
+            Another caveat is that the UI/UX are highly optimized for desktop
+            performance: While this is the ideal situation to upload a map, it
+            sacrifices the important metric of the mobile user!
+            <br />
+            While discord servers are a thing, they are usually scattered about:
+            having to join to 10 different discord servers to receive updates
+            about 10 different projects can be annoying!
+            <br />
             <br />
             <ul>
               <li>
@@ -103,13 +101,13 @@ const LandingPage = () => {
           </p>
         </div>
       </div>
-      <div id="getting-started" className="info-card">
+      <div id='getting-started' className='info-card'>
         <h2>Getting Started</h2>
-        <div className="link-container">
-          <Link to="/explore" className="link-button">
+        <div className='link-container'>
+          <Link to='/explore' className='link-button'>
             Explore
           </Link>
-          <Link to="/create-new-post" className="link-button">
+          <Link to='/create-new-post' className='link-button'>
             Upload Project
           </Link>
         </div>
