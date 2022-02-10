@@ -8,7 +8,7 @@
     "build": "yarn sass scss/main.scss ../front-end/src/styles/new.css"
   },
   "dependencies": {
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass": "^1.25.0"
   }
 }
